@@ -22,7 +22,7 @@
             <main>
                 <div class="container-fluid px-4">
                     <h1 class="mt-1">Sửa tài khoản</h1>
-                    <form action="/admin/taikhoan/sua/<%= MaTaiKhoan %>" method="post" class="needs-validation" novalidate>
+                    <form action="/admin/taikhoan/sua/<%= MaTaiKhoan %>" method="post" class="needs-validation">
                         <div class="mb-3">
                             <label for="TenTaiKhoan" class="form-label">Tên tài khoản</label>
                             <input type="text" class="form-control" id="TenTaiKhoan" name="TenTaiKhoan"
@@ -30,16 +30,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="MatKhau" class="form-label">Mật khẩu</label>
-                            <input type="password" class="form-control" id="MatKhau" name="MatKhau" value="<%= MatKhau %>"
-                                disabled>
+                            <input type="password" class="form-control" id="MatKhau" name="MatKhau" />
                         </div>
                         <div class="mb-3">
                             <label for="HoTen" class="form-label">Họ tên</label>
-                            <input type="text" class="form-control" id="HoTen" name="HoTen" value="<%=HoTen %>" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="NamSinh" class="form-label">Năm sinh</label>
-                            <input type="date" class="form-control" id="NamSinh" name="NamSinh" value="<%= NamSinh %>" required>
+                            <input type="text" class="form-control" id="HoTen" name="HoTen" value="<%= HoTen %>" required>
                         </div>
                         <div class="mb-3">
                             <label for="DiaChi" class="form-label">Địa chỉ</label>
@@ -55,11 +50,11 @@
                             <input type="email" class="form-control" id="Email" name="Email" value="<%= Email %>" required>
                         </div>
                         <div class="mb-3">
-                            <label for="QuyenHan" class="form-label">Quyền hạn</label>
-                            <select class="form-select" id="QuyenHan" name="QuyenHan" required>
-                                <option value="admin" <%=MaQuyenHan=='1' ? 'selected' : '' %>>Quản trị viên</option>
-                                <option value="staff" <%=MaQuyenHan=='2' ? 'selected' : '' %>>Nhân viên</option>
-                                <option value="user" <%=MaQuyenHan=='3' ? 'selected' : '' %>>Người dùng</option>
+                            <label for="MaQuyenHan" class="form-label">Quyền hạn</label>
+                            <select class="form-select" id="MaQuyenHan" name="MaQuyenHan" required>
+                                <option value="1" <%=MaQuyenHan=='1' ? 'selected' : '' %>>Quản trị viên</option>
+                                <option value="2" <%=MaQuyenHan=='2' ? 'selected' : '' %>>Nhân viên</option>
+                                <option value="3" <%=MaQuyenHan=='3' ? 'selected' : '' %>>Người dùng</option>
                             </select>
                         </div>
                         <div class="mb-3">

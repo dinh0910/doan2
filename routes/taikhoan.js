@@ -29,9 +29,8 @@ router.get('/them', function (req, res) {
 router.post('/them', function (req, res) {
     var taikhoan = {
         TenTaiKhoan: req.body.TenTaiKhoan,
-        MatKhau: req.body.MatKhau,
+        MatKhau: bcrypt.hashSync(req.body.XacNhanMatKhau, saltRounds),
         HoTen: req.body.HoTen,
-        NamSinh: req.body.NamSinh,
         DiaChi: req.body.DiaChi,
         SoDienThoai: req.body.SoDienThoai,
         Email: req.body.Email,
@@ -39,8 +38,8 @@ router.post('/them', function (req, res) {
     var sql = "INSERT INTO taikhoan SET ?"
     conn.query(sql, taikhoan, function (error, results) {
         if (error) {
-            req.session.error = error;
-            res.redirect('admin/error')
+            req.session.error = error
+            res.redirect('/admin/error')
         } else {
             res.redirect('/admin/taikhoan/')
         }
@@ -54,7 +53,7 @@ router.get('/sua/:id', function (req, res) {
     conn.query(sql, [id], function (error, results) {
         if (error) {
             req.session.error = error
-            res.redirect('admin/error')
+            res.redirect('/admin/error')
         } else {
             res.render('admin/taikhoan_sua', {
                 title: 'Sửa tài khoản',
@@ -62,7 +61,6 @@ router.get('/sua/:id', function (req, res) {
                 TenTaiKhoan: results[0].TenTaiKhoan,
                 MatKhau: results[0].MatKhau,
                 HoTen: results[0].HoTen,
-                NamSinh: results[0].NamSinh,
                 DiaChi: results[0].DiaChi,
                 SoDienThoai: results[0].SoDienThoai,
                 Email: results[0].Email,
@@ -78,7 +76,6 @@ router.post('/sua/:id', function (req, res) {
     var taikhoan = {
         TenTaiKhoan: req.body.TenTaiKhoan,
         HoTen: req.body.HoTen,
-        NamSinh: req.body.NamSinh,
         DiaChi: req.body.DiaChi,
         SoDienThoai: req.body.SoDienThoai,
         Email: req.body.Email,
@@ -92,7 +89,7 @@ router.post('/sua/:id', function (req, res) {
     conn.query(sql, [taikhoan, id], function (error, results) {
         if (error) {
             req.session.error = error
-            res.redirect('admin/error')
+            res.redirect('/admin/error')
         } else {
             res.redirect('/admin/taikhoan/')
         }

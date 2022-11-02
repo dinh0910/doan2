@@ -1,4 +1,8 @@
-const ipn1 = document.getElementById('MatKhau').value
-const ipn2 = document.getElementById('XacNhanMatKhau').value
-
-if (ipn1 != ipn2) alert("Nhập lại mật khẩu")
+function checkpd(){
+    if (document.getElementById('MatKhau').value ==
+            document.getElementById('XacNhanMatKhau').value) {
+        document.getElementById('submit').disabled = false;
+    } else {
+        document.getElementById('submit').disabled = true;
+    }
+}
