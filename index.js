@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index')
 var authRouter = require('./routes/auth')
 var taiKhoanRouter = require('./routes/taikhoan')
 var quyenHanRouter = require('./routes/quyenhan')
+var bannerRourter = require('./routes/banner')
 
 app.set('views', './views')
 app.set('view engine', 'ejs')
@@ -48,6 +49,7 @@ app.use('/', indexRouter)
 app.use('/', authRouter)
 app.use('/admin/taikhoan', taiKhoanRouter)
 app.use('/admin/quyenhan', quyenHanRouter)
+app.use('/admin/banner', bannerRourter)
 
 app.listen(3000, function () {
     console.log('Server is running! => http://127.0.0.1:3000')

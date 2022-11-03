@@ -22,37 +22,27 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-1">Danh sách Banner</h1>
-                    <a href="/admin/banner/them" class="btn btn-light fw-normal">Thêm mới</a>
-                    <table class="table">
+                    <h1 class="mt-1">Danh sách Quyền hạn Tài khoản</h1>
+                    <a href="/admin/quyenhan/them" class="btn btn-light fw-normal">Thêm mới</a>
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Hình ảnh</th>
-                                <th>Sử dụng</th>
+                                <th>Size</th>
                                 <th>Sửa</th>
                                 <th>Xóa</th>
                             </tr>
                         </thead>
                         <tbody>
                             <% var stt = 1 %>
-                            <% banner.forEach(function(bn){ %>
+                            <% quyenhan.forEach(function(qh){ %> 
                                 <tr>
-                                    <td>
-                                        <%= stt++ %>
-                                    </td>
-                                    <td>
-                                        <img src="/uploads/<%= bn.HinhAnh %>" class="img-thumbnail" width="100" />
-                                    </td>
-                                    <td>
-                                        <%= bn.SuDung %>
-                                    </td>
-                                    <td><a href="/admin/banner/sua/<%= bn.MaBanner %>" class="nav-link icon-hover-edit"><i
-                                                class="fa-solid fa-pen-to-square"></i></a></td>
-                                    <td><a href="/admin/banner/xoa/<%= bn.MaBanner %>" class=" nav-link icon-hover-delete"><i
-                                                class="fa-solid fa-trash"></i></a></td>
+                                    <td><%= stt++ %></td>
+                                    <td><%= qh.QuyenHan %></td>
+                                    <td><a href="/admin/quyenhan/sua/<%= qh.MaQuyenHan %>" class="nav-link icon-hover-edit"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                    <td><a href="/admin/quyenhan/xoa/<%= qh.MaQuyenHan %>" class=" nav-link icon-hover-delete"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
-                            <% }) %>
+                            <% }) %> 
                         </tbody>
                     </table>
                 </div>
