@@ -13,6 +13,7 @@
     <script src="https://use.fontawesome.com/releases/v6.2.0/js/all.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles_effects.css">
 </head>
 <body class="sb-nav-fixed">
     <%- include('layout/header') %>
@@ -21,16 +22,29 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-1">Size</h1>
-                    <form action="/admin/size/them" method="post" class="needs-validation" novalidate>
-                        <div class="mb-3">
-                            <label for="Size" class="form-label">Quyền hạn</label>
-                            <input type="text" class="form-control" id="Size" name="Size" required>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary">Thêm</button>
-                        </div>                  
-                    </form>
+                    <h1 class="mt-1">Danh sách danh mục</h1>
+                    <a href="/admin/danhmuc/them" class="btn btn-light fw-normal">Thêm mới</a>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Danh mục</th>
+                                <th>Sửa</th>
+                                <th>Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% var stt = 1 %>
+                            <% danhmuc.forEach(function(dm){ %> 
+                                <tr>
+                                    <td><%= stt++ %></td>
+                                    <td><%= dm.DanhMuc %></td>
+                                    <td><a href="/admin/danhmuc/sua/<%= dm.MaDanhMuc %>" class="nav-link icon-hover-edit"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                    <td><a href="/admin/danhmuc/xoa/<%= dm.MaDanhMuc %>" class=" nav-link icon-hover-delete"><i class="fa-solid fa-trash"></i></a></td>
+                                </tr>
+                            <% }) %> 
+                        </tbody>
+                    </table>
                 </div>
             </main>
             <%- include('layout/footer') %>

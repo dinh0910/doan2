@@ -2,88 +2,88 @@ var express = require('express')
 var router = express.Router()
 var conn = require('../connect')
 
-//GET: Danh sách quyền hạn
+//GET: Danh sách danh mục
 router.get('/', function (req, res) {
-    var sql = 'SELECT * FROM quyenhan ORDER BY MaQuyenHan'
+    var sql = 'SELECT * FROM danhmuc ORDER BY MaDanhMuc'
     conn.query(sql, function (error, results) {
         if (error) {
             req.session.error = error
             res.redirect('/admin/error')
         } else {
-            res.render('admin/quyenhan', {
-                title: 'Danh sách quyền hạn',
-                quyenhan: results
+            res.render('admin/danhmuc', {
+                title: 'Danh sách danh mục',
+                danhmuc: results
             })
         }
     })
 })
 
-// GET: Thêm quyền hạn
+// GET: Thêm danh mục
 router.get('/them', function (req, res) {
-    res.render('admin/quyenhan_them', { title: 'Thêm quyền hạn' });
+    res.render('admin/danhmuc_them', { title: 'Thêm danh mục' });
 });
 
-// POST: Thêm quyền hạn
+// POST: Thêm danh mục
 router.post('/them', function (req, res) {
-    var quyenhan = {
-        QuyenHan: req.body.QuyenHan
+    var danhmuc = {
+        DanhMuc: req.body.DanhMuc
     }
-    var sql = "INSERT INTO quyenhan SET ?"
-    conn.query(sql, quyenhan, function (error, results) {
+    var sql = "INSERT INTO danhmuc SET ?"
+    conn.query(sql, danhmuc, function (error, results) {
         if (error) {
             req.session.error = error
             res.redirect('/admin/error')
         } else {
-            res.redirect('/admin/quyenhan/')
+            res.redirect('/admin/danhmuc/')
         }
     })
 })
 
-// GET: Sửa quyền hạn
+// GET: Sửa danh mục
 router.get('/sua/:id', function (req, res) {
     var id = req.params.id;
-    var sql = 'SELECT * FROM quyenhan WHERE MaQuyenHan = ?'
+    var sql = 'SELECT * FROM danhmuc WHERE MaQuyenHan = ?'
     conn.query(sql, [id], function (error, results) {
         if (error) {
             req.session.error = error
             res.redirect('/admin/error')
         } else {
             res.render('admin/quyenhan_sua', {
-                title: 'Sửa quyền hạn',
-                MaQuyenHan: results[0].MaQuyenHan,
-                QuyenHan: results[0].QuyenHan
+                title: 'Sửa danh mục',
+                MaDanhMuc: results[0].MaDanhMuc,
+                DanhMuc: results[0].DanhMuc
             })
         }
     })
 })
 
-// POST: Sửa quyền hạn
+// POST: Sửa danh mục
 router.post('/sua/:id', function (req, res) {
-    var quyenhan = {
-        QuyenHan: req.body.QuyenHan
+    var danhmuc = {
+        DanhMuc: req.body.DanhMuc
     }
     var id = req.params.id;
-    var sql = 'UPDATE quyenhan SET ? WHERE MaQuyenHan = ?'
-    conn.query(sql, [quyenhan, id], function (error, results) {
+    var sql = 'UPDATE danhmuc SET ? WHERE MaDanhMuc = ?'
+    conn.query(sql, [danhmuc, id], function (error, results) {
         if (error) {
             req.session.error = error
             res.redirect('/admin/error')
         } else {
-            res.redirect('/admin/quyenhan/')
+            res.redirect('/admin/danhmuc/')
         }
     })
 })
 
-// GET: Xóa quyền hạn
+// GET: Xóa danh mục
 router.get('/xoa/:id', function (req, res) {
     var id = req.params.id
-    var sql = 'DELETE FROM quyenhan WHERE MaQuyenHan = ?'
+    var sql = 'DELETE FROM danhmuc WHERE MaDanhMuc = ?'
     conn.query(sql, [id], function (error, results) {
         if (error) {
             req.session.error = error
             res.redirect('/admin/error')
         } else {
-            res.redirect('/admin/quyenhan/')
+            res.redirect('/admin/danhmuc/')
         }
     })
 })

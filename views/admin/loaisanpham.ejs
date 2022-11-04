@@ -22,27 +22,43 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-1">Danh sách Size</h1>
-                    <a href="/admin/size/them" class="btn btn-light fw-normal">Thêm mới</a>
+                    <h1 class="mt-1">Danh sách loại sản phẩm</h1>
+                    <a href="/admin/loaisanpham/them" class="btn btn-light fw-normal">Thêm mới</a>
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Size</th>
-                                <th>Sửa</th>
+                                    <th>Danh mục</th>
+                                        <th>Loại sản phẩm</th>
+                                    <th>Sửa</th>
                                 <th>Xóa</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% var stt = 1 %>
-                            <% size.forEach(function(sz){ %> 
+                            <% var stt=1 %>
+                            <% loaisanpham.forEach(function(lsp){ %>
                                 <tr>
-                                    <td><%= stt++ %></td>
-                                    <td><%= sz.Size %></td>
-                                    <td><a href="/admin/size/sua/<%= sz.MaSize %>" class="nav-link icon-hover-edit"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                    <td><a href="/admin/size/xoa/<%=
+                                    <td>
+                                        <%= stt++ %>
+                                    </td>
+                                    <td>
+                                        <%= lsp.DanhMuc %>
+                                    </td>
+                                    <td>
+                                        <%= lsp.LoaiSanPham %>
+                                    </td>
+                                    <td>
+                                        <a href="/admin/loaisanpham/sua/<%= lsp.MaLoaiSanPham %>"
+                                            class="nav-link icon-hover-edit"><i
+                                                class="fa-solid fa-pen-to-square"></i></a>
+                                    </td>
+                                    <td>
+                                        <a href="/admin/loaisanpham/xoa/<%= lsp.MaLoaiSanPham %>"
+                                            class=" nav-link icon-hover-delete"><i
+                                                class="fa-solid fa-trash"></i></a>
+                                    </td>
                                 </tr>
-                            <% }) %> 
+                            <% }) %>
                         </tbody>
                     </table>
                 </div>
