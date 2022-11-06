@@ -27,31 +27,41 @@
                             <a href="/admin/sanpham/them" class="btn btn-light fw-normal">Thêm mới</a>
                             <table class="table table-hover">
                                 <thead>
-                                    <th>STT</th>
-                                        <th>Tên sản phẩm</th>
-                                            <th>Loại sản phẩm</th>
-                                                <th>Size</th>
-                                                    <th>Đơn giá</th>
-                                                    <th>Số lượng</th>
-                                                <th>Đã bán</th>
-                                            <th>Tình trạng</th>
-                                        <th>Sửa</th>
-                                    <th>Xóa</th>
+                                    <tr>
+                                        <th>STT</th>
+                                            <th>Tên sản phẩm</th>
+                                                <th>Loại sản phẩm</th>
+                                                    <th>Size</th>
+                                                        <th>Đơn giá</th>
+                                                        <th>Số lượng</th>
+                                                    <th>Đã bán</th>
+                                                <th>Tình trạng</th>
+                                            <th>Sửa</th>
+                                        <th>Xóa</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                    <% var stt = 1 %> 
-                                    <% sanpham.forEach(function(sp){ %>
-                                        <td><%= stt++ %></td>
-                                            <td><%= sp.TenSanPham %></td>
-                                                <td><%= sp.LoaiSanPham %></td>
-                                                    <td><%= sp.Size %></td>
-                                                    <td><%= sp.DonGia %></td>
-                                                <td><%= sp.SoLuong %></td>
-                                            <td><%= sp.DaBan %></td>
-                                        <td><%= sp.TinhTrang %></td>
-                                        <td><a href="/admin/sanpham/sua/<%= sp.MaSanPham %>" class="nav-link icon-hover-edit"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                        <td><a href="/admin/sanpham/xoa/<%= sp.MaSanPham %>" class=" nav-link icon-hover-delete"><i class="fa-solid fa-trash"></i></a></td>    
-                                    <% }) %>  
+                                    <tr>
+                                        <% var stt = 1 %> 
+                                        <% sanpham.forEach(function(sp){ %>
+                                            <td><%= stt++ %></td>
+                                                <td><%= sp.TenSanPham %></td>
+                                                    <td><%= sp.LoaiSanPham %></td>
+                                                        <td><%= sp.Size %></td>
+                                                        <td><%= sp.DonGia %></td>
+                                                    <td><%= sp.SoLuong %></td>
+                                                <td>
+                                                    <% if(sp.DaBan == 0) { %>
+                                                        <a href="/admin/sanpham/duyet/<%= sp.MaSanPham %>"><i class="fa-regular fa-circle-check"></i></a>
+                                                    <% } else { %>
+                                                        <a href="/admin/sanpham/duyet/<%= sp.MaSanPham %>"><i class="fa-regular fa-circle"></i></a>
+                                                    <% } %>
+                                                </td>
+                                            <td><%= sp.TinhTrang %></td>
+                                            <td><a href="/admin/sanpham/sua/<%= sp.MaSanPham %>" class="nav-link icon-hover-edit"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                            <td><a href="/admin/sanpham/xoa/<%= sp.MaSanPham %>" class=" nav-link icon-hover-delete"><i class="fa-solid fa-trash"></i></a></td>    
+                                        <% }) %>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

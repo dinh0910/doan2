@@ -29,23 +29,38 @@
                         </div>
                         <div class="mb-3">
                             <label for="MaLoaiSanPham" class="form-label">Loại sản phẩm</label>
-                            <input type="text" class="form-control" id="MaLoaiSanPham" name="MaLoaiSanPham" required>
+                            <select class="form-select" id="MaLoaiSanPham" name="MaLoaiSanPham" required>
+                                <option value="">-- Chọn --</option>
+                                <% loaisanpham.forEach(function(lsp) { %>
+                                    <option value="<%= lsp.MaLoaiSanPham %>"><%= lsp.LoaiSanPham %></option>
+                                <% }) %>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="MaSize" class="form-label">Size</label>
-                            <input type="password" class="form-control" id="MaSize" name="MaSize" required>
+                            <select class="form-select" id="MaSize" name="MaSize" required>
+                                <option value="">-- Chọn --</option>
+                                <% size.forEach(function(s) { %>
+                                    <option value="<%= s.MaSize %>"><%= s.Size %></option>
+                                <% }) %>
+                            </select>
                         </div>        
                         <div class="mb-3">
                             <label for="DonGia" class="form-label">Đơn giá</label>
-                            <input type="password" class="form-control" id="DonGia" name="DonGia" required>
+                            <input type="text" class="form-control" id="DonGia" name="DonGia" required>
                         </div>
                         <div class="mb-3">
                             <label for="SoLuong" class="form-label">Số lượng</label>
-                            <input type="text" class="form-control" id="SoLuong" name="SoLuong">
+                            <input type="number" class="form-control" id="SoLuong" name="SoLuong" value="0">
                         </div>
                         <div class="mb-3">
-                            <label for="TinhTrang" class="form-label">Tình trạng</label>
-                            <input type="text" class="form-control" id="TinhTrang" name="TinhTrang">
+                            <label for="MaTinhTrang" class="form-label">Tình trạng</label> 
+                            <select class="form-select" id="MaTinhTrang" name="MaTinhTrang" required>
+                                <option value="">-- Chọn --</option>
+                                <% tinhtrang.forEach(function(tt) { %>
+                                    <option value="<%= tt.MaTinhTrang %>"><%= tt.TinhTrang %></option>
+                                <% }) %>
+                            </select>
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="submit" id="submit" class="btn btn-primary">Thêm</button>
