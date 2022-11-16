@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th10 08, 2022 lúc 07:50 AM
+-- Thời gian đã tạo: Th10 16, 2022 lúc 03:20 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -29,7 +29,6 @@ USE `project2`;
 -- Cấu trúc bảng cho bảng `banner`
 --
 
-DROP TABLE IF EXISTS `banner`;
 CREATE TABLE `banner` (
   `MaBanner` int(11) NOT NULL,
   `HinhAnh` varchar(255) DEFAULT NULL,
@@ -50,7 +49,6 @@ INSERT INTO `banner` (`MaBanner`, `HinhAnh`, `SuDung`) VALUES
 -- Cấu trúc bảng cho bảng `danhmuc`
 --
 
-DROP TABLE IF EXISTS `danhmuc`;
 CREATE TABLE `danhmuc` (
   `MaDanhMuc` int(11) NOT NULL,
   `DanhMuc` varchar(100) DEFAULT NULL
@@ -69,7 +67,6 @@ INSERT INTO `danhmuc` (`MaDanhMuc`, `DanhMuc`) VALUES
 -- Cấu trúc bảng cho bảng `hinhanh`
 --
 
-DROP TABLE IF EXISTS `hinhanh`;
 CREATE TABLE `hinhanh` (
   `MaHinhAnh` int(11) NOT NULL,
   `MaSanPham` int(11) NOT NULL,
@@ -82,7 +79,6 @@ CREATE TABLE `hinhanh` (
 -- Cấu trúc bảng cho bảng `loaisanpham`
 --
 
-DROP TABLE IF EXISTS `loaisanpham`;
 CREATE TABLE `loaisanpham` (
   `MaLoaiSanPham` int(11) NOT NULL,
   `MaDanhMuc` int(11) NOT NULL,
@@ -102,7 +98,6 @@ INSERT INTO `loaisanpham` (`MaLoaiSanPham`, `MaDanhMuc`, `LoaiSanPham`) VALUES
 -- Cấu trúc bảng cho bảng `quyenhan`
 --
 
-DROP TABLE IF EXISTS `quyenhan`;
 CREATE TABLE `quyenhan` (
   `MaQuyenHan` int(11) NOT NULL,
   `QuyenHan` varchar(10) DEFAULT NULL
@@ -123,7 +118,6 @@ INSERT INTO `quyenhan` (`MaQuyenHan`, `QuyenHan`) VALUES
 -- Cấu trúc bảng cho bảng `sanpham`
 --
 
-DROP TABLE IF EXISTS `sanpham`;
 CREATE TABLE `sanpham` (
   `MaSanPham` int(11) NOT NULL,
   `TenSanPham` varchar(100) DEFAULT NULL,
@@ -148,7 +142,6 @@ INSERT INTO `sanpham` (`MaSanPham`, `TenSanPham`, `MaLoaiSanPham`, `MaSize`, `Do
 -- Cấu trúc bảng cho bảng `size`
 --
 
-DROP TABLE IF EXISTS `size`;
 CREATE TABLE `size` (
   `MaSize` int(11) NOT NULL,
   `Size` varchar(5) NOT NULL
@@ -167,7 +160,6 @@ INSERT INTO `size` (`MaSize`, `Size`) VALUES
 -- Cấu trúc bảng cho bảng `taikhoan`
 --
 
-DROP TABLE IF EXISTS `taikhoan`;
 CREATE TABLE `taikhoan` (
   `MaTaiKhoan` int(11) NOT NULL,
   `TenTaiKhoan` varchar(50) NOT NULL,
@@ -193,7 +185,6 @@ INSERT INTO `taikhoan` (`MaTaiKhoan`, `TenTaiKhoan`, `MatKhau`, `HoTen`, `DiaChi
 -- Cấu trúc bảng cho bảng `TinhTrang`
 --
 
-DROP TABLE IF EXISTS `TinhTrang`;
 CREATE TABLE `TinhTrang` (
   `MaTinhTrang` int(11) NOT NULL,
   `TinhTrang` varchar(50) NOT NULL
