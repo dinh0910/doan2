@@ -13,7 +13,7 @@ var sizeRouter = require('./routes/size')
 var danhmucRouter = require('./routes/danhmuc')
 var loaisanphamRouter = require('./routes/loaisanpham')
 var sanphamRouter = require('./routes/sanpham')
-//var hinhanhSPRouter = require('./routes/hinhanh_sanpham')
+var hinhanhSPRouter = require('./routes/hinhanhsp')
 var tinhtrangRouter = require('./routes/tinhtrang')
 
 app.set('views', './views')
@@ -60,7 +60,7 @@ app.use('/admin/size', sizeRouter)
 app.use('/admin/danhmuc', danhmucRouter)
 app.use('/admin/loaisanpham', loaisanphamRouter)
 app.use('/admin/sanpham', sanphamRouter)
-//app.use('/admin/hinhanh_sanpham', hinhanhSPRouter)
+app.use('/admin/hinhanhsp', hinhanhSPRouter)
 app.use('/admin/tinhtrang', tinhtrangRouter)
 
 app.listen(3000, function () {

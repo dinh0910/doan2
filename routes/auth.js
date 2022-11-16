@@ -19,8 +19,8 @@ var storageConfig = multer.diskStorage({
 var upload = multer({ storage: storageConfig });
 
 // GET: Đăng nhập
-router.get('/site/dangnhap', function (req, res) {
-    res.render('site/dangnhap', { title: 'Đăng nhập' });
+router.get('/dangnhap', function (req, res) {
+    res.render('dangnhap', { title: 'Đăng nhập' });
 });
 
 module.exports = router

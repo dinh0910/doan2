@@ -25,8 +25,8 @@ router.get('/them', function (req, res) {
     var sql = 'SELECT * FROM danhmuc ORDER BY DanhMuc';
 	conn.query(sql, function(error, results){
 		if(error) {
-			req.session.error = error;
-			res.redirect('/admin/error');
+			req.session.error = error
+			res.redirect('/admin/error')
 		} else {
 			res.render('admin/loaisanpham_them', {
 				title: 'Thêm loại sản phẩm',

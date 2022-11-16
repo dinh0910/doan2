@@ -22,8 +22,8 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-1">Danh sách loại sản phẩm</h1>
-                    <a href="/admin/loaisanpham/them" class="btn btn-light fw-normal">Thêm mới</a>
+                    <h1 class="mt-1">Danh sách hình ảnh sản phẩm</h1>
+                    <a href="/admin/hinhanhsp/them" class="btn btn-light fw-normal">Thêm mới</a>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -36,7 +36,7 @@
                         </thead>
                         <tbody>
                             <% var stt=1 %>
-                            <% hinhanh_sanpham.forEach(function(h){ %>
+                            <% hinhanh.forEach(function(h){ %>
                                 <tr>
                                     <td>
                                         <%= stt++ %>
@@ -48,12 +48,12 @@
                                         <%= h.HinhAnh %>
                                     </td>
                                     <td>
-                                        <a href="/admin/loaisanpham/sua/<%= h.MaHinhAnh %>"
+                                        <a href="/admin/hinhanhsp/sua/<%= h.MaHinhAnh %>"
                                             class="nav-link icon-hover-edit"><i
                                                 class="fa-solid fa-pen-to-square"></i></a>
                                     </td>
                                     <td>
-                                        <a href="/admin/loaisanpham/xoa/<%= h.MaHinhAnh %>"
+                                        <a href="/admin/hinhanhsp/xoa/<%= h.MaHinhAnh %>"
                                             class=" nav-link icon-hover-delete"><i
                                                 class="fa-solid fa-trash"></i></a>
                                     </td>

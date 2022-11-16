@@ -15,92 +15,105 @@ var storageConfig = multer.diskStorage({
 })
 var upload = multer({ storage: storageConfig })
 
-//GET: Danh sách banner
+//GET: Danh sách hình ảnh sản phẩm
 router.get('/', function (req, res) {
-    var sql = 'SELECT * FROM banner ORDER BY MaBanner'
+    var sql = 'SELECT * FROM hinhanh ORDER BY MaHinhAnh'
     conn.query(sql, function (error, results) {
         if (error) {
             req.session.error = error
             res.redirect('/admin/error')
         } else {
-            res.render('admin/banner', {
-                title: 'Danh sách banner',
-                banner: results
+            res.render('admin/hinhanhsp', {
+                title: 'Danh sách hình ảnh sản phẩm',
+                hinhanh: results
             })
         }
     })
 })
 
-// GET: Thêm banner
+// GET: Thêm hình ảnh sản phẩm
 router.get('/them', function (req, res) {
-    res.render('admin/banner_them', { title: 'Thêm banner' });
-});
+    var sql = "SELECT * FROM sanpham ORDER BY MaSanPham"
+    conn.query(sql, function(error, results){
+        if(error){
+            req.session.error = error
+            res.redirect('/admin/error')
+        } else {
+            res.render('admin/hinhanhsp_them', { 
+                title: 'Thêm hình ảnh sản phẩm',
+                sanpham: results
+            })
+        }     
+    })
+})
 
-// POST: Thêm banner
+// POST: Thêm hình ảnh sản phẩm
 router.post('/them', upload.single('HinhAnh'), function (req, res) {
     var fileName = ''
     if(req.file) fileName = req.file.filename
-    var banner = {
+    var hinhanh = {
+        MaSanPham: req.body.MaSanPham,
         HinhAnh: fileName
     }
-    var sql = "INSERT INTO banner SET ?"
-    conn.query(sql, banner, function (error, results) {
+    var sql = "INSERT INTO hinhanh SET ?"
+    conn.query(sql, hinhanh, function (error, results) {
         if (error) {
             req.session.error = error
             res.redirect('/admin/error')
         } else {
-            res.redirect('/admin/banner/')
+            res.redirect('/admin/hinhanhsp/')
         }
     })
 })
 
-// GET: Sửa banner
+// GET: Sửa hình ảnh sản phẩm
 router.get('/sua/:id', function (req, res) {
     var id = req.params.id;
-    var sql = 'SELECT * FROM banner WHERE MaBanner = ?'
+    var sql = 'SELECT * FROM hinhanh WHERE MaHinhAnh = ?;\
+                SELECT * FROM sanpham ORDER BY MaSanPham;'
     conn.query(sql, [id], function (error, results) {
         if (error) {
             req.session.error = error
             res.redirect('/admin/error')
         } else {
-            res.render('admin/banner_sua', {
-                title: 'Sửa banner',
-                MaBanner: results[0].MaBanner,
-                HinhAnh: results[0].HinhAnh,
-                SuDung: results[0].SuDung
+            res.render('admin/hinhanhsp_sua', {
+                title: 'Sửa hình ảnh',
+                MaHinhAnh: results[0].MaHinhAnh,
+                MaSanPham: results[0].MaSanPham,
+                HinhAnh: results[0].HinhAnh
             })
         }
     })
 })
 
-// POST: Sửa banner
+// POST: Sửa hình ảnh sản phẩm
 router.post('/sua/:id', upload.single('HinhAnh'), function (req, res) {
-    var banner = {
-        SuDung: req.body.SuDung
+    var hinhanh = {
+        MaSanPham: req.body.MaSanPham,
     }
     if(req.file) banner['HinhAnh'] = req.file.filename
     var id = req.params.id;
-    var sql = 'UPDATE banner SET ? WHERE MaBanner = ?'
+    var sql = 'UPDATE hinhanh SET ? WHERE MaHinhAnh = ?'
     conn.query(sql, [banner, id], function (error, results) {
         if (error) {
             req.session.error = error
             res.redirect('/admin/error')
         } else {
-            res.redirect('/admin/banner/')
+            res.redirect('/admin/hinhanhsp/')
         }
     })
 })
 
-// GET: Xóa banner
+// GET: Xóa hình ảnh sản phẩm
 router.get('/xoa/:id', function (req, res) {
     var id = req.params.id
-    var sql = 'DELETE FROM banner WHERE MaBanner = ?'
+    var sql = 'DELETE FROM hinhanh WHERE MaHinhAnh = ?'
     conn.query(sql, [id], function (error, results) {
         if (error) {
             req.session.error = error
             res.redirect('/admin/error')
         } else {
-            res.redirect('/admin/banner/')
+            res.redirect('/admin/hinhanhsp/')
         }
     })
 })
