@@ -10,6 +10,13 @@
     <link rel="stylesheet" href="/css/templatemo.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <script src="https://kit.fontawesome.com/819401a432.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://use.fontawesome.com/releases/v6.2.0/js/all.js" crossorigin="anonymous"></script> -->
+    <style>
+        .size-img-banner {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <%- include('layout/nav') %> 
@@ -35,7 +42,7 @@
     </div>
 
     <!-- Start Banner Hero -->
-    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+    <!-- <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
         <ol class="carousel-indicators">
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
@@ -78,8 +85,52 @@
             role="button" data-bs-slide="next">
             <i class="fas fa-chevron-right"></i>
         </a>
-    </div>
+    </div> -->
     <!-- End Banner Hero -->
+
+    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <% for (let i = 0; i < banner.length; i++) { %> 
+                <% if (i == 0) { %> 
+                    <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="<%= i %>" class="active"></li>
+                <% } else { %>
+                    <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="<%= i %>"></li>
+                <% } %>
+            <% } %> 
+        </ol>
+        <div class="carousel-inner">
+            <% var i = 0; %> 
+            <% banner.forEach(function(b) { %>
+                <% if (i == 0) { %> 
+                    <div class="carousel-item active">
+                        <div class="container">
+                            <div class="row p-5">
+                                <img class="img-fluid size-img-banner" src="/uploads/<%= b.HinhAnh %>">
+                            </div>
+                        </div>
+                    </div>
+                    <% i++; %>
+                <% } else { %>
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="row p-5">
+                                <img class="img-fluid size-img-banner" src="/uploads/<%= b.HinhAnh %>">
+                            </div>
+                        </div>
+                    </div>
+                    <% i++; %>
+                <% } %> 
+            <% }) %>
+        </div>
+        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel"
+            role="button" data-bs-slide="prev">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel"
+            role="button" data-bs-slide="next">
+            <i class="fas fa-chevron-right"></i>
+        </a>
+    </div>
 
     <!-- Start Categories of The Month -->
     <section class="container py-5">
