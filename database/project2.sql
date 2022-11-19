@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th10 16, 2022 lúc 03:20 PM
+-- Thời gian đã tạo: Th10 19, 2022 lúc 03:10 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -177,7 +177,8 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`MaTaiKhoan`, `TenTaiKhoan`, `MatKhau`, `HoTen`, `DiaChi`, `SoDienThoai`, `Email`, `MaQuyenHan`, `TinhTrang`) VALUES
-(13, 'vinh', '$2b$10$jgcdsB9dFFrOiL1dqcEV5exwJKwHA8utFybqTtiX7QFBZvdivQqBm', 'Pham Lam Nguyen Vinh', 'Long Xuyên', '0849952219', 'dinhpoor0910@gmail.com', 3, 1);
+(13, 'vinh', '$2b$10$jgcdsB9dFFrOiL1dqcEV5exwJKwHA8utFybqTtiX7QFBZvdivQqBm', 'Pham Lam Nguyen Vinh', 'Long Xuyên', '0849952219', 'dinhpoor0910@gmail.com', 3, 1),
+(14, 'vinh1', '$2b$10$rVS5f/Ba/oKVOGqYHRohtuappysNch3MPEJ.BtQeMEs0Zp34NOE5q', 'Pham Lam Nguyen Vinh', 'Long Xuyên', '0849952219', 'dinhpoor0910@gmail.com', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -311,7 +312,7 @@ ALTER TABLE `size`
 -- AUTO_INCREMENT cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `MaTaiKhoan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `MaTaiKhoan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `TinhTrang`

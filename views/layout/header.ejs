@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light shadow">
     <div class="container d-flex justify-content-between align-items-center">
-        <a class="navbar-brand text-success logo h1 align-self-center" href="#">
+        <a class="navbar-brand text-success logo h1 align-self-center" href="/">
             Vintage
         </a>
 
@@ -46,16 +46,29 @@
                     <span
                         class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
                 </a>
-                <div class="dropstart">
-                    <a class="nav-icon position-relative text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/dangnhap">Đăng nhập</a></li>
-                        <li><a class="dropdown-item" href="/dangky">Đăng ký</a></li>
-                    </ul>
-                </div>
+                <% if (!session.MaTaiKhoan) { %> 
+                    <div class="dropstart">
+                        <a class="nav-icon position-relative text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Đăng nhập<i class="fa fa-fw fa-user text-dark mr-3"></i>
+                            <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/dangnhap">Đăng nhập</a></li>
+                            <li><a class="dropdown-item" href="/dangky">Đăng ký</a></li>
+                        </ul>
+                    </div>
+                <% } else { %>
+                    <div class="dropstart">
+                        <a class="nav-icon position-relative text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Chào, <%= session.TenTaiKhoan %>!<i class="fa fa-fw fa-user text-dark mr-3"></i>
+                            <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/thongtincanhan">Thông tin cá nhân</a></li>
+                            <li><a class="dropdown-item" href="/dangxuat">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                <% } %>  
             </div>
         </div>
     </div>
