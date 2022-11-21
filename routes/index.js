@@ -1,9 +1,9 @@
 var express = require('express')
-const conn = require('../connect')
+var conn = require('../connect')
 var router = express.Router()
 
 //GET: Trang chủ
-router.get('/', (req, res) => {
+router.get('/', function(req, res) {
     var sql = 'SELECT * FROM banner WHERE SuDung = 1;'
     conn.query(sql, function(error, results){
         if(error){
