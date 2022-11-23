@@ -16,7 +16,82 @@
 
     <%- include('layout/header') %>
 
+    <div class="container py-5">
+        <div class="row">
 
+            <div class="col-lg-3 rounded-3" style="background-color: #efefef;">
+                <h1 class="h2 pb-4 fw-bolder">Danh mục</h1>
+                <ul class="list-unstyled templatemo-accordion">
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="/thongtincanhan">
+                            Thông tin cá nhân
+                        </a>
+                    </li>
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="/lichsumuahang">
+                            Lịch sử mua hàng
+                        </a>
+                    </li>
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="/hotro">
+                            Hỗ trợ
+                        </a>
+                    </li>
+                    <li class="pb-3">
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="/dangxuat">
+                            Đăng xuất
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-lg-1"></div>
+
+            <div class="col-lg-8">
+                <div class="col-md-7 col-lg-8">
+                    <h4 class="mb-3">Thông tin cá nhân</h4>
+                    <form action="/thongtincanhan/capnhat/<%= session.MaTaiKhoan %>" class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="HoTen" class="form-label">Họ tên</label>
+                                <input type="text" class="form-control" id="HoTen" placeholder="" value="<%= taikhoan.HoTen %> " required>
+                                <div class="invalid-feedback">
+                                    Valid first name is required.
+                                </div>
+                            </div>
+                
+                            <div class="col-12">
+                                <label for="TenTaiKhoan" class="form-label">Tên tài khoản</label>
+                                <div class="input-group has-validation">
+                                    <input type="text" class="form-control" id="TenTaiKhoan" value="<%= taikhoan.TenTaiKhoan %>" readonly>
+                                </div>
+                            </div>
+                
+                            <div class="col-12">
+                                <label for="Email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="Email" placeholder="you@example.com" value="<%= taikhoan.Email %>">
+                            </div>
+                
+                            <div class="col-12">
+                                <label for="DiaChi" class="form-label">Địa chỉ</label>
+                                <input type="text" class="form-control" id="DiaChi" placeholder="" value="<%= taikhoan.DiaChi %>">
+                            </div>
+
+                            <div class="col-12">
+                                <label for="SoDienThoai" class="form-label">Số điện thoại</label>
+                                <input type="text" class="form-control" id="SoDienThoai" placeholder="" value="<%= taikhoan.SoDienThoai %>">
+                            </div>
+                        </div>
+                
+                        <hr class="my-4">
+                
+                        <button class="w-100 btn btn-success btn-lg" type="submit">Cập nhật thông tin</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <%- include('layout/footer') %> 
 

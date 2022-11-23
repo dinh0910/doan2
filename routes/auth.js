@@ -15,7 +15,7 @@ router.get('/dangnhap', function (req, res) {
 
 // POST: Đăng nhập
 router.post('/dangnhap', function(req, res){
-	if(req.session.MaNguoiDung){
+	if(req.session.MaTaiKhoan){
 		req.session.error = 'Người dùng đã đăng nhập rồi.'
 		res.redirect('/error')
 	} else {
