@@ -21,9 +21,16 @@
                         </div>
                     </li>
                     <li class="nav-item mx-4">
-                        <a class="nav-icon d-none d-lg-inline" href="#">
-                            <i class="fa fa-fw fa-bars text-dark"></i>
-                        </a>
+                        <div class="dropstart">
+                            <a class="nav-icon d-none d-lg-inline" href="#">
+                                <i class="fa fa-fw fa-bars text-dark"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <% danhmuc.forEach(function(dm){ %>
+                                    <li><a class="dropdown-item" href="/"><%= dm.DanhMuc %> </a></li>
+                                <% }) %>
+                            </ul>
+                        </div>
                     </li>
                     <li class="nav-item mx-4">
                         <a class="nav-icon position-relative text-decoration-none" href="#">
@@ -43,7 +50,7 @@
                                     Chào, <%= session.TenTaiKhoan %>!<i class="fa fa-fw fa-user text-dark"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="/thongtincanhan/<%= session.MaTaiKhoan %>">Thông tin cá nhân</a></li>
+                                    <li><a class="dropdown-item" href="/thongtincanhan">Thông tin cá nhân</a></li>
                                     <li><a class="dropdown-item" href="/dangxuat">Đăng xuất</a></li>
                                 </ul>
                             </div>

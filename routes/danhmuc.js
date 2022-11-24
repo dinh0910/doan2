@@ -26,7 +26,8 @@ router.get('/them', function (req, res) {
 // POST: Thêm danh mục
 router.post('/them', function (req, res) {
     var danhmuc = {
-        DanhMuc: req.body.DanhMuc
+        DanhMuc: req.body.DanhMuc,
+        DanhMucURL: req.body.DanhMucURL
     }
     var sql = "INSERT INTO danhmuc SET ?"
     conn.query(sql, danhmuc, function (error, results) {
@@ -51,7 +52,8 @@ router.get('/sua/:id', function (req, res) {
             res.render('admin/quyenhan_sua', {
                 title: 'Sửa danh mục',
                 MaDanhMuc: results[0].MaDanhMuc,
-                DanhMuc: results[0].DanhMuc
+                DanhMuc: results[0].DanhMuc,
+                DanhMucURL: results[0].DanhMucURL
             })
         }
     })
@@ -60,7 +62,8 @@ router.get('/sua/:id', function (req, res) {
 // POST: Sửa danh mục
 router.post('/sua/:id', function (req, res) {
     var danhmuc = {
-        DanhMuc: req.body.DanhMuc
+        DanhMuc: req.body.DanhMuc,
+        DanhMucURL: req.body.DanhMucURL
     }
     var id = req.params.id;
     var sql = 'UPDATE danhmuc SET ? WHERE MaDanhMuc = ?'

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th10 19, 2022 lúc 03:10 PM
+-- Thời gian đã tạo: Th10 24, 2022 lúc 12:22 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -51,15 +51,16 @@ INSERT INTO `banner` (`MaBanner`, `HinhAnh`, `SuDung`) VALUES
 
 CREATE TABLE `danhmuc` (
   `MaDanhMuc` int(11) NOT NULL,
-  `DanhMuc` varchar(100) DEFAULT NULL
+  `DanhMuc` varchar(100) DEFAULT NULL,
+  `DanhMucURL` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhmuc`
 --
 
-INSERT INTO `danhmuc` (`MaDanhMuc`, `DanhMuc`) VALUES
-(1, 'Áo');
+INSERT INTO `danhmuc` (`MaDanhMuc`, `DanhMuc`, `DanhMucURL`) VALUES
+(1, 'Áo', NULL);
 
 -- --------------------------------------------------------
 
@@ -312,7 +313,7 @@ ALTER TABLE `size`
 -- AUTO_INCREMENT cho bảng `taikhoan`
 --
 ALTER TABLE `taikhoan`
-  MODIFY `MaTaiKhoan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `MaTaiKhoan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `TinhTrang`
