@@ -4,14 +4,16 @@ var router = express.Router()
 
 //GET: Trang chủ
 router.get('/', function(req, res) {
-    var sql = 'SELECT * FROM banner WHERE SuDung = 1;'
+    var sql = 'SELECT * FROM banner WHERE SuDung = 1;\
+                SELECT * FROM danhmuc ORDER BY MaDanhMuc;'
     conn.query(sql, function(error, results){
         if(error){
             res.send('/error')
         } else {
             res.render('index', {
                 title: 'Trang chủ',
-                banner: results
+                banner: results[0],
+                danhmuc: results[1]
             })
         }
     }) 

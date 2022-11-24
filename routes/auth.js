@@ -1,12 +1,8 @@
 var express = require('express')
 var router = express.Router()
-var path = require('path')
-var fs = require("fs")
 var conn = require('../connect')
-var { check, validationResult } = require('express-validator')
 var bcrypt = require('bcrypt')
 var saltRounds = 10
-var multer = require('multer')
 
 // GET: Đăng nhập
 router.get('/dangnhap', function (req, res) {
@@ -60,31 +56,20 @@ router.get('/dangky', function (req, res) {
 
 //POST: Đăng ký
 router.post('/dangky', function(req, res){
-	var errors = validationResult(req)
-	if(!errors.isEmpty()) {
-		if(req.file) fs.unlink(req.file.path, function(err){});
-		res.render('dangky', {
-			title: 'Đăng ký tài khoản',
-			errors: errors.array()
-		})
-	} else {
-		var fileName = ''
-		if(req.file) fileName = req.file.filename
-		var data = {
-			TenTaiKhoan: req.body.TenTaiKhoan,
-			MatKhau: bcrypt.hashSync(req.body.XacNhanMatKhau, saltRounds)
-		}
-		var sql = 'INSERT INTO taikhoan SET ?'
-		conn.query(sql, data, function(error, results){
-			if(error) {
-				req.session.error = error
-				res.redirect('/error')
-			} else {
-				req.session.success = 'Đã đăng ký tài khoản thành công.'
-				res.redirect('/success')
-			}
-		})
+	var data = {
+		TenTaiKhoan: req.body.TenTaiKhoan,
+		MatKhau: bcrypt.hashSync(req.body.XacNhanMatKhau, saltRounds)
 	}
+	var sql = 'INSERT INTO taikhoan SET ?'
+	conn.query(sql, data, function(error, results){
+		if(error) {
+			req.session.error = error
+			res.redirect('/error')
+		} else {
+			req.session.success = 'Đã đăng ký tài khoản thành công.'
+			res.redirect('/')
+		}
+	})
 })
 
 // GET: Đăng xuất
