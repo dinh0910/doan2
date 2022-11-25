@@ -14,14 +14,14 @@
             id="templatemo_main_nav">
             <div class="flex-fill">
                 <ul class="nav d-flex justify-content-end align-items-center">
-                    <li class="nav-item mx-2">
+                    <!-- <li class="nav-item mx-2">
                         <div class="searchbar">
                             <input class="search_input rounded-pill shadow-lg bg-body rounded" type="text" placeholder="Tìm kiếm">
                             <a href="#" class="search_icon"><i class="fa fa-fw fa-search text-dark"></i></a>
                         </div>
-                    </li>
+                    </li> -->
                     <li class="nav-item mx-4">
-                        <div class="dropstart">
+                        <div class="dropdown">
                             <a class="nav-icon d-none d-lg-inline" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-fw fa-bars text-dark"></i>
                             </a>
@@ -29,6 +29,16 @@
                                 <% danhmuc.forEach(function(dm){ %>
                                     <li><a class="dropdown-item" href="/"><%= dm.DanhMuc %> </a></li>
                                 <% }) %>
+                                <li class="dropdown-item">
+                                    <ul>
+                                        <li>
+                                            a
+                                        </li>
+                                        <li>
+                                            a
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </li>

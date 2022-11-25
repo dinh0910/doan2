@@ -43,13 +43,13 @@ router.post('/them', function (req, res) {
 // GET: Sửa danh mục
 router.get('/sua/:id', function (req, res) {
     var id = req.params.id;
-    var sql = 'SELECT * FROM danhmuc WHERE MaQuyenHan = ?'
+    var sql = 'SELECT * FROM danhmuc WHERE MaDanhMuc = ?'
     conn.query(sql, [id], function (error, results) {
         if (error) {
             req.session.error = error
             res.redirect('/admin/error')
         } else {
-            res.render('admin/quyenhan_sua', {
+            res.render('admin/danhmuc_sua', {
                 title: 'Sửa danh mục',
                 MaDanhMuc: results[0].MaDanhMuc,
                 DanhMuc: results[0].DanhMuc,

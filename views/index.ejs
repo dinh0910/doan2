@@ -18,7 +18,16 @@
             height: 500px;
             width: 100%;
         }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+            position: absolute;
+        }
     </style>
+    <!-- .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0; // remove the gap so it doesn't close
+    } -->
 </head>
 <body>
     <%- include('layout/nav') %> 
@@ -73,18 +82,17 @@
     <section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Sản phẩm bán chạy</h1>
-                <p>
-                    
-                </p>
+                <h1 class="h1">Danh mục sản phẩm</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="/images/category_img_01.jpg" class="rounded-circle img-fluid border"></a>
-                <h5 class="text-center mt-3 mb-3">Đồng hồ</h5>
-                <p class="text-center"><a class="btn btn-success text-white">Xem sản phẩm</a></p>
-            </div>
+            <% danhmuc.forEach(function(dm){ %> 
+                <div class="col-12 col-md-4 p-5 mt-3">
+                    <a href="#"><img src="/images/category_img_01.jpg" class="rounded-circle img-fluid border"></a>
+                    <h5 class="text-center mt-3 mb-3">Đồng hồ</h5>
+                    <p class="text-center"><a class="btn btn-success text-white">Xem sản phẩm</a></p>
+                </div>
+            <% }) %> 
             <div class="col-12 col-md-4 p-5 mt-3">
                 <a href="#"><img src="/images/category_img_02.jpg" class="rounded-circle img-fluid border"></a>
                 <h2 class="h5 text-center mt-3 mb-3">Giày</h2>
