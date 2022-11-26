@@ -21,25 +21,60 @@
                         </div>
                     </li> -->
                     <li class="nav-item mx-4">
-                        <div class="dropdown">
+                        <!-- <div class="dropdown">
                             <a class="nav-icon d-none d-lg-inline" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-fw fa-bars text-dark"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <% danhmuc.forEach(function(dm){ %>
-                                    <li><a class="dropdown-item" href="/"><%= dm.DanhMuc %> </a></li>
-                                <% }) %>
-                                <li class="dropdown-item">
-                                    <ul>
-                                        <li>
-                                            a
-                                        </li>
-                                        <li>
-                                            a
-                                        </li>
-                                    </ul>
-                                </li>
+                                <% //danhmuc.forEach(function(dm){ %>
+                                    <li><a class="dropdown-item" href="/"><%= //dm.DanhMuc %> </a></li>
+                                <% //}) %>
                             </ul>
+                        </div> -->
+                        <div class="dropstart" :hover>
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon d-none d-lg-inline" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-fw fa-bars text-dark"></i>
+                            </a>
+                
+                            <div class="dropdown-menu">
+                              
+                                <div class="mega-menu d-flex">
+                                    <div>
+                                        <h3 class="text-primary">Math</h3>
+                                        <ul class="list-unstyled">
+                                            <li><a href="#">Early math(5) </a></li>
+                                            <li><a href="#">Pre-Algebra(22) </a></li>
+                                            <li><a href="#">Algebra 1(12) </a></li>
+                                            <li><a href="#">Geometry(81) </a></li>
+                                            <li><a href="#">Trigonometry(9) </a></li>
+                                            <li><a href="#">Percalculus(16) </a></li>
+                                            
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-warning">Computing</h3>
+                                        <ul class="list-unstyled">
+                                            <li><a href="#">Computer Programming(5) </a></li>
+                                            <li><a href="#">Computer Science(12) </a></li>
+                                            <li><a href="#">Hour of Code(81) </a></li>
+                                            <li><a href="#">Computer Animation(9) </a></li>
+                                            <li><a href="#">Graphic Design(16) </a></li>
+                                            <li><a href="#">Logo Design(22) </a></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-danger">Economic</h3>
+                                        <ul class="list-unstyled">
+                                            <li><a href="#">Microeconomics(32) </a></li>
+                                            <li><a href="#">Macroeconomics(61) </a></li>
+                                            <li><a href="#">Finance(73) </a></li>
+                                            <li><a href="#">Capital Markets(88) </a></li>
+                                            <li><a href="#">World Economy(19) </a></li>
+                                            <li><a href="#">Accounting(93) </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </li>
                     <li class="nav-item mx-4">
