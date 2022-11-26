@@ -20,6 +20,21 @@
                             <a href="#" class="search_icon"><i class="fa fa-fw fa-search text-dark"></i></a>
                         </div>
                     </li> -->
+                    <% danhmuc.forEach(function(dm){ %>
+                        <li class="nav-item mx-2">
+                            <div class="dropdown">
+                                <a class="position-relative text-decoration-none"><%= dm.DanhMuc %></a>
+                                <ul class="dropdown-menu">
+                                    <% danhmuc.forEach(function(lsp){ %>
+                                        <% if(lsp.MaDanhMuc == dm.MaDanhMuc) { %> 
+                                            <li class="dropdown-item"><%= lsp.LoaiSanPham %></li>
+                                        <% } %> 
+                                    <% }) %>
+                                </ul>
+                            </div>
+                        </li>
+                    <% }) %>
+
                     <li class="nav-item mx-4">
                         <!-- <div class="dropdown">
                             <a class="nav-icon d-none d-lg-inline" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -31,8 +46,8 @@
                                 <% //}) %>
                             </ul>
                         </div> -->
-                        <div class="dropstart" :hover>
-                            <a href="#" data-bs-toggle="dropdown" class="nav-icon d-none d-lg-inline" role="button" aria-haspopup="true" aria-expanded="false">
+                        <div class="dropstart">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon d-none d-lg-inline" role="button" aria-expanded="false">
                                 <i class="fa fa-fw fa-bars text-dark"></i>
                             </a>
                 

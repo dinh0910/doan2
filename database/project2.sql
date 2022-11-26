@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost
--- Thời gian đã tạo: Th10 24, 2022 lúc 12:22 PM
--- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 8.1.6
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th10 26, 2022 lúc 05:58 PM
+-- Phiên bản máy phục vụ: 10.4.24-MariaDB
+-- Phiên bản PHP: 8.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -52,15 +52,18 @@ INSERT INTO `banner` (`MaBanner`, `HinhAnh`, `SuDung`) VALUES
 CREATE TABLE `danhmuc` (
   `MaDanhMuc` int(11) NOT NULL,
   `DanhMuc` varchar(100) DEFAULT NULL,
-  `DanhMucURL` varchar(255) DEFAULT NULL
+  `DanhMucURL` varchar(255) DEFAULT NULL,
+  `HinhAnh` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhmuc`
 --
 
-INSERT INTO `danhmuc` (`MaDanhMuc`, `DanhMuc`, `DanhMucURL`) VALUES
-(1, 'Áo', NULL);
+INSERT INTO `danhmuc` (`MaDanhMuc`, `DanhMuc`, `DanhMucURL`, `HinhAnh`) VALUES
+(1, 'Áo', 'ao', NULL),
+(2, 'Quần', 'quan', NULL),
+(3, 'Phụ kiện', 'phukien', NULL);
 
 -- --------------------------------------------------------
 
@@ -91,7 +94,9 @@ CREATE TABLE `loaisanpham` (
 --
 
 INSERT INTO `loaisanpham` (`MaLoaiSanPham`, `MaDanhMuc`, `LoaiSanPham`) VALUES
-(1, 1, 'Áo thun');
+(1, 1, 'Áo thun'),
+(2, 2, 'Quần jeans'),
+(3, 3, 'Thắt lưng');
 
 -- --------------------------------------------------------
 
@@ -184,19 +189,19 @@ INSERT INTO `taikhoan` (`MaTaiKhoan`, `TenTaiKhoan`, `MatKhau`, `HoTen`, `DiaChi
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `TinhTrang`
+-- Cấu trúc bảng cho bảng `tinhtrang`
 --
 
-CREATE TABLE `TinhTrang` (
+CREATE TABLE `tinhtrang` (
   `MaTinhTrang` int(11) NOT NULL,
   `TinhTrang` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `TinhTrang`
+-- Đang đổ dữ liệu cho bảng `tinhtrang`
 --
 
-INSERT INTO `TinhTrang` (`MaTinhTrang`, `TinhTrang`) VALUES
+INSERT INTO `tinhtrang` (`MaTinhTrang`, `TinhTrang`) VALUES
 (1, 'Mới');
 
 --
@@ -258,9 +263,9 @@ ALTER TABLE `taikhoan`
   ADD KEY `MaQuyenHan` (`MaQuyenHan`);
 
 --
--- Chỉ mục cho bảng `TinhTrang`
+-- Chỉ mục cho bảng `tinhtrang`
 --
-ALTER TABLE `TinhTrang`
+ALTER TABLE `tinhtrang`
   ADD PRIMARY KEY (`MaTinhTrang`);
 
 --
@@ -277,7 +282,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `MaDanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `MaDanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `hinhanh`
@@ -289,7 +294,7 @@ ALTER TABLE `hinhanh`
 -- AUTO_INCREMENT cho bảng `loaisanpham`
 --
 ALTER TABLE `loaisanpham`
-  MODIFY `MaLoaiSanPham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `MaLoaiSanPham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `quyenhan`
@@ -316,9 +321,9 @@ ALTER TABLE `taikhoan`
   MODIFY `MaTaiKhoan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT cho bảng `TinhTrang`
+-- AUTO_INCREMENT cho bảng `tinhtrang`
 --
-ALTER TABLE `TinhTrang`
+ALTER TABLE `tinhtrang`
   MODIFY `MaTinhTrang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -343,7 +348,7 @@ ALTER TABLE `loaisanpham`
 ALTER TABLE `sanpham`
   ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`MaLoaiSanPham`) REFERENCES `loaisanpham` (`MaLoaiSanPham`),
   ADD CONSTRAINT `sanpham_ibfk_2` FOREIGN KEY (`MaSize`) REFERENCES `size` (`MaSize`),
-  ADD CONSTRAINT `sanpham_ibfk_3` FOREIGN KEY (`MaTinhTrang`) REFERENCES `TinhTrang` (`MaTinhTrang`);
+  ADD CONSTRAINT `sanpham_ibfk_3` FOREIGN KEY (`MaTinhTrang`) REFERENCES `tinhtrang` (`MaTinhTrang`);
 
 --
 -- Các ràng buộc cho bảng `taikhoan`
