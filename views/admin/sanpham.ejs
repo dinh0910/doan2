@@ -41,9 +41,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <% var stt = 1 %> 
-                                        <% sanpham.forEach(function(sp){ %>
+                                    <% var stt = 1 %> 
+                                    <% sanpham.forEach(function(sp){ %>
+                                        <tr>
                                             <td><%= stt++ %></td>
                                                 <td><%= sp.TenSanPham %></td>
                                                     <td><%= sp.LoaiSanPham %></td>
@@ -60,8 +60,8 @@
                                             <td><%= sp.TinhTrang %></td>
                                             <td><a href="/admin/sanpham/sua/<%= sp.MaSanPham %>" class="nav-link icon-hover-edit"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                             <td><a href="/admin/sanpham/xoa/<%= sp.MaSanPham %>" class=" nav-link icon-hover-delete"><i class="fa-solid fa-trash"></i></a></td>    
-                                        <% }) %>
-                                    </tr>
+                                        </tr>
+                                    <% }) %>
                                 </tbody>
                             </table>
                         </div>
