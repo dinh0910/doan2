@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 28, 2022 lúc 04:54 AM
--- Phiên bản máy phục vụ: 10.4.25-MariaDB
--- Phiên bản PHP: 8.1.10
+-- Thời gian đã tạo: Th10 28, 2022 lúc 06:04 AM
+-- Phiên bản máy phục vụ: 10.4.27-MariaDB
+-- Phiên bản PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `banner` (
   `MaBanner` int(11) NOT NULL,
   `HinhAnh` varchar(255) DEFAULT NULL,
   `SuDung` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `banner`
@@ -54,7 +54,7 @@ CREATE TABLE `danhmuc` (
   `DanhMuc` varchar(100) DEFAULT NULL,
   `DanhMucURL` varchar(255) DEFAULT NULL,
   `HinhAnh` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhmuc`
@@ -75,14 +75,88 @@ CREATE TABLE `hinhanh` (
   `MaHinhAnh` int(11) NOT NULL,
   `MaSanPham` int(11) NOT NULL,
   `HinhAnh` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `hinhanh`
 --
 
 INSERT INTO `hinhanh` (`MaHinhAnh`, `MaSanPham`, `HinhAnh`) VALUES
-(1, 9, '1669606509725.jpg');
+(1, 9, '1669606509725.jpg'),
+(2, 2, '1669610400767.jpg'),
+(3, 3, '1669610459556.jpg'),
+(4, 4, '1669610472713.jpg'),
+(5, 5, ''),
+(6, 6, '1669610541523.jpg'),
+(7, 8, '1669610555124.jpg'),
+(8, 8, '1669610603826.jpg'),
+(9, 9, '1669610619124.jpg'),
+(10, 10, '1669610635299.jpg'),
+(11, 11, '1669610649342.jpg'),
+(12, 12, '1669610668154.jpg'),
+(13, 13, '1669610689143.jpg'),
+(14, 14, '1669610702392.jpg'),
+(15, 15, '1669610717684.jpg'),
+(16, 16, '1669610760176.jpg'),
+(17, 17, '1669610800379.jpg'),
+(18, 18, '1669610815255.jpg'),
+(19, 19, '1669610824986.jpg'),
+(20, 20, '1669610845931.jpg'),
+(21, 21, '1669610855790.jpg'),
+(22, 22, '1669610869931.jpg'),
+(23, 23, '1669610898063.jpg'),
+(24, 24, '1669610919057.jpg'),
+(25, 25, '1669610931551.jpg'),
+(26, 26, '1669610942492.jpg'),
+(27, 27, '1669610955417.jpg'),
+(28, 28, '1669610970998.jpg'),
+(29, 29, '1669610983350.jpg'),
+(30, 30, '1669610994252.jpg'),
+(31, 38, '1669611028160.jpg'),
+(32, 39, '1669611043143.jpg'),
+(33, 40, '1669611052225.jpg'),
+(34, 41, '1669611063167.jpg'),
+(35, 42, '1669611083511.jpg'),
+(36, 43, '1669611095772.jpg'),
+(37, 44, '1669611107083.jpg'),
+(38, 49, '1669611144936.jpg'),
+(39, 50, '1669611159063.jpg'),
+(40, 51, '1669611207385.jpg'),
+(41, 52, '1669611233266.jpg'),
+(42, 53, '1669611251758.jpg'),
+(43, 54, '1669611267631.jpg'),
+(44, 55, '1669611279565.jpg'),
+(45, 56, '1669611290867.jpg'),
+(46, 57, '1669611308574.jpg'),
+(47, 58, '1669611319427.jpg'),
+(48, 59, ''),
+(49, 60, '1669611352800.jpg'),
+(50, 61, '1669611364792.jpg'),
+(51, 62, '1669611394250.jpg'),
+(52, 63, '1669611405786.jpg'),
+(53, 64, '1669611420482.jpg'),
+(54, 52, '1669611440207.jpg'),
+(55, 66, '1669611452904.jpg'),
+(56, 67, '1669611468978.jpg'),
+(57, 68, '1669611483241.jpg'),
+(58, 75, '1669611526528.jpg'),
+(59, 76, '1669611539014.jpg'),
+(60, 77, '1669611549806.jpg'),
+(61, 78, '1669611563725.jpg'),
+(62, 79, '1669611596110.jpg'),
+(63, 80, '1669611613387.jpg'),
+(64, 86, '1669611629637.jpg'),
+(65, 87, '1669611650743.jpg'),
+(66, 88, '1669611670337.jpg'),
+(67, 89, '1669611681329.jpg'),
+(68, 90, '1669611695539.jpg'),
+(69, 91, '1669611723362.jpg'),
+(70, 92, '1669611743529.jpg'),
+(71, 93, '1669611755035.jpg'),
+(72, 94, '1669611766624.jpg'),
+(73, 95, '1669611776912.jpg'),
+(74, 96, '1669611789610.jpg'),
+(75, 97, '1669611801825.jpg');
 
 -- --------------------------------------------------------
 
@@ -95,7 +169,7 @@ CREATE TABLE `loaisanpham` (
   `MaDanhMuc` int(11) NOT NULL,
   `LoaiSanPham` varchar(100) DEFAULT NULL,
   `LoaiSanPhamURL` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `loaisanpham`
@@ -131,7 +205,7 @@ INSERT INTO `loaisanpham` (`MaLoaiSanPham`, `MaDanhMuc`, `LoaiSanPham`, `LoaiSan
 CREATE TABLE `quyenhan` (
   `MaQuyenHan` int(11) NOT NULL,
   `QuyenHan` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `quyenhan`
@@ -157,7 +231,7 @@ CREATE TABLE `sanpham` (
   `SoLuong` int(11) DEFAULT 0,
   `DaBan` tinyint(4) NOT NULL DEFAULT 0,
   `MaTinhTrang` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `sanpham`
@@ -271,7 +345,7 @@ INSERT INTO `sanpham` (`MaSanPham`, `TenSanPham`, `MaLoaiSanPham`, `MaSize`, `Do
 CREATE TABLE `size` (
   `MaSize` int(11) NOT NULL,
   `Size` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `size`
@@ -296,7 +370,7 @@ CREATE TABLE `taikhoan` (
   `Email` varchar(100) DEFAULT NULL,
   `MaQuyenHan` int(11) NOT NULL DEFAULT 3,
   `TinhTrang` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `taikhoan`
@@ -315,7 +389,7 @@ INSERT INTO `taikhoan` (`MaTaiKhoan`, `TenTaiKhoan`, `MatKhau`, `HoTen`, `DiaChi
 CREATE TABLE `tinhtrang` (
   `MaTinhTrang` int(11) NOT NULL,
   `TinhTrang` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tinhtrang`
@@ -408,7 +482,7 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT cho bảng `hinhanh`
 --
 ALTER TABLE `hinhanh`
-  MODIFY `MaHinhAnh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `MaHinhAnh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT cho bảng `loaisanpham`
