@@ -194,25 +194,31 @@ body, ul, li, p, a, label, input, div {
 .searchbar{
   margin-bottom: auto;
   margin-top: auto;
-  height: 60px;
+  /* height: 60px; */
   border-radius: 30px;
   padding: 10px;
+  border-style: solid;
+  max-width: 500px;
+  min-width: auto;
 }
 
 .search_input{
-  color: black;
+  /* color: black; */
   border: 0;
+  /* border-style: solid; */
   outline: 0;
   background: none;
-  width: 0;
-  caret-color:transparent;
-  line-height: 40px;
-  transition: width 0.4s linear;
+  width: 350px;
+  /* border-radius: 30px; */
+  /* caret-color:transparent; */
+  /* line-height: 40px; */
+  /* transition: width 0.4s linear; */
+  padding-left: 15px;
 }
 
-.searchbar:hover > .search_input{
+/* .searchbar:hover > .search_input{
   padding: 0 10px;
-  width: 700px;
+  width: 200px;
   caret-color:black;
   transition: width 0.4s linear;
 }
@@ -220,10 +226,10 @@ body, ul, li, p, a, label, input, div {
 .searchbar:hover > .search_icon{
   background: none;
   color: black;
-}
+} */
 
 .search_icon{
-  height: 40px;
+  /* height: 40px;
   width: 40px;
   float: right;
   display: flex;
@@ -231,5 +237,6 @@ body, ul, li, p, a, label, input, div {
   align-items: center;
   border-radius: 50%;
   color:white;
-  text-decoration:none;
+  text-decoration:none; */
+  margin-left: 10px;
 }

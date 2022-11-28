@@ -40,7 +40,8 @@ router.get('/them', function (req, res) {
 router.post('/them', function (req, res) {
     var loaisanpham = {
         MaDanhMuc: req.body.MaDanhMuc,
-        LoaiSanPham: req.body.LoaiSanPham
+        LoaiSanPham: req.body.LoaiSanPham,
+        LoaiSanPhamURL: req.body.LoaiSanPhamURL
     }
     var sql = "INSERT INTO loaisanpham SET ?"
     conn.query(sql, loaisanpham, function (error, results) {
@@ -76,7 +77,8 @@ router.get('/sua/:id', function (req, res) {
 router.post('/sua/:id', function (req, res) {
     var loaisanpham = {
         MaDanhMuc: req.body.MaDanhMuc,
-        LoaiSanPham: req.body.LoaiSanPham
+        LoaiSanPham: req.body.LoaiSanPham,
+        LoaiSanPhamURL: req.body.LoaiSanPhamURL
     }
     var id = req.params.id
     var sql = 'UPDATE loaisanpham SET ? WHERE MaLoaiSanPham = ?'

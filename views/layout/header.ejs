@@ -5,7 +5,7 @@
         </a>
 
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
-            data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
+            data-bs-target="#templatemo_main_nav" aria-controls="templatemo_main_nav" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,15 +20,23 @@
                             <a href="#" class="search_icon"><i class="fa fa-fw fa-search text-dark"></i></a>
                         </div>
                     </li> -->
-                    <% danhmuc.forEach(function(dm){ %>
-                        <li class="nav-item mx-2">
+
+                    <li class="nav-item mx-4">
+                        <div class="searchbar">
+                            <input class="search_input" type="text" placeholder="Tìm kiếm">           
+                            <a href="#" class="search_icon"><i class="fa fa-fw fa-search text-dark"></i></a>
+                        </div>
+                    </li>
+
+                    <% loaisanpham.forEach(function(dm){ %>
+                        <li class="nav-item mx-5">
                             <div class="dropdown">
-                                <a class="position-relative text-decoration-none"><%= dm.DanhMuc %></a>
+                                <a class="position-relative text-decoration-none" role="button"><%= dm.DanhMuc %></a>
                                 <ul class="dropdown-menu">
-                                    <% danhmuc.forEach(function(lsp){ %>
+                                    <% loaisanpham.forEach(function(lsp){ %>
                                         <% if(lsp.MaDanhMuc == dm.MaDanhMuc) { %> 
                                             <li class="dropdown-item"><%= lsp.LoaiSanPham %></li>
-                                        <% } %> 
+                                        <% } %>
                                     <% }) %>
                                 </ul>
                             </div>
@@ -49,10 +57,8 @@
                         <div class="dropstart">
                             <a href="#" data-bs-toggle="dropdown" class="nav-icon d-none d-lg-inline" role="button" aria-expanded="false">
                                 <i class="fa fa-fw fa-bars text-dark"></i>
-                            </a>
-                
-                            <div class="dropdown-menu">
-                              
+                            </a>               
+                            <div class="dropdown-menu">                              
                                 <div class="mega-menu d-flex">
                                     <div>
                                         <h3 class="text-primary">Math</h3>
@@ -62,8 +68,7 @@
                                             <li><a href="#">Algebra 1(12) </a></li>
                                             <li><a href="#">Geometry(81) </a></li>
                                             <li><a href="#">Trigonometry(9) </a></li>
-                                            <li><a href="#">Percalculus(16) </a></li>
-                                            
+                                            <li><a href="#">Percalculus(16) </a></li>                                            
                                         </ul>
                                     </div>
                                     <div>
@@ -92,6 +97,7 @@
                             </div>
                         </div>
                     </li>
+
                     <li class="nav-item mx-4">
                         <a class="nav-icon position-relative text-decoration-none" href="#">
                             <i class="fa fa-fw fa-cart-arrow-down text-dark"></i>
@@ -99,15 +105,16 @@
                             </span> -->
                         </a>
                     </li>
-                    <li class="nav-item">
+
+                    <li class="nav-item ms-4">
                         <% if (!session.MaTaiKhoan) { %> 
-                            <a class="nav-icon position-relative text-decoration-none btn btn-outline-success text-dark" href="/dangnhap">
-                                Đăng nhập<i class="fa fa-fw fa-user text-dark"></i>
+                            <a class="nav-icon position-relative text-decoration-none" href="/dangnhap">
+                                <i class="fa fa-fw fa-user text-dark"></i>
                             </a>
                         <% } else { %>
                             <div class="dropstart">
-                                <a class="nav-icon position-relative text-decoration-none btn btn-outline-success text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Chào, <%= session.TenTaiKhoan %>!<i class="fa fa-fw fa-user text-dark"></i>
+                                <a class="nav-icon position-relative text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-fw fa-user text-success"></i>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="/thongtincanhan">Thông tin cá nhân</a></li>

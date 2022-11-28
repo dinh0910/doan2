@@ -30,6 +30,7 @@
                                 <th>STT</th>
                                     <th>Danh mục</th>
                                         <th>Loại sản phẩm</th>
+                                        <th>Tên URL</th>
                                     <th>Sửa</th>
                                 <th>Xóa</th>
                             </tr>
@@ -46,6 +47,9 @@
                                     </td>
                                     <td>
                                         <%= lsp.LoaiSanPham %>
+                                    </td>
+                                    <td>
+                                        <%= lsp.LoaiSanPhamURL %>
                                     </td>
                                     <td>
                                         <a href="/admin/loaisanpham/sua/<%= lsp.MaLoaiSanPham %>"

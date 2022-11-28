@@ -28,7 +28,7 @@
                             <select class="form-select" id="MaSanPham" name="MaSanPham" required>
                                 <option value="">-- Chọn --</option>
                                 <% sanpham.forEach(function(sp) { %>
-                                    <option value="<%= sp.MaSanPham %>"><%= sp.SanPham %></option>
+                                    <option value="<%= sp.MaSanPham %>"><%= sp.TenSanPham %></option>
                                 <% }) %>
                             </select>
                         </div>

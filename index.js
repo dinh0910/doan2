@@ -16,6 +16,7 @@ var sanphamRouter = require('./routes/sanpham')
 var hinhanhSPRouter = require('./routes/hinhanhsp')
 var tinhtrangRouter = require('./routes/tinhtrang')
 var thongtincanhanRouter = require('./routes/thongtincanhan')
+// var aoRouter = require('./routes/ao')
 
 app.set('views', './views')
 app.set('view engine', 'ejs')
@@ -64,6 +65,7 @@ app.use('/admin/sanpham', sanphamRouter)
 app.use('/admin/hinhanhsp', hinhanhSPRouter)
 app.use('/admin/tinhtrang', tinhtrangRouter)
 app.use('/thongtincanhan', thongtincanhanRouter)
+// app.use('/ao', aoRouter)
 
 app.listen(3000, function () {
     console.log('Server is running! => http://127.0.0.1:3000 :3')
