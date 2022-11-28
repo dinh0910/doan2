@@ -17,7 +17,9 @@ var upload = multer({ storage: storageConfig })
 
 //GET: Danh sách hình ảnh sản phẩm
 router.get('/', function (req, res) {
-    var sql = 'SELECT * FROM hinhanh ORDER BY MaHinhAnh'
+    var sql = 'SELECT h.*, s.TenSanPham FROM hinhanh h, sanpham s \
+                WHERE h.MaSanPham = s.MaSanPham\
+                ORDER BY MaHinhAnh'
     conn.query(sql, function (error, results) {
         if (error) {
             req.session.error = error
