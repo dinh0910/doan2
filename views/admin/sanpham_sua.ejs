@@ -22,11 +22,24 @@
             <main>
                 <div class="container-fluid px-4">
                     <h1 class="mt-1">Sửa tài khoản</h1>
-                    <form action="/admin/taikhoan/sua/<%= sanpham.MaSanPham %>" method="post" class="needs-validation">
+                    <form action="/admin/sanpham/sua/<%= sanpham.MaSanPham %>" method="post" class="needs-validation">
                         <div class="mb-3">
                             <label for="TenSanPham" class="form-label">Tên sản phẩm</label>
                             <input type="text" class="form-control" id="TenSanPham" name="TenSanPham"
                                 value="<%= sanpham.TenSanPham %>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="MaDanhMuc" class="form-label">Danh mục</label>
+                            <select class="form-select" id="MaDanhMuc" name="MaDanhMuc" required>
+                                <option value="">-- Chọn --</option>
+                                <% danhmuc.forEach(function(dm) { %>
+                                    <% if(dm.MaDanhMuc == sanpham.MaDanhMuc) { %>
+                                        <option value="<%= dm.MaDanhMuc %>" selected><%= dm.DanhMuc %></option>
+                                    <% } else {%>
+                                        <option value="<%= dm.MaDanhMuc %>"><%= dm.DanhMuc %></option>
+                                    <% } %>
+                                <% }) %>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="MaLoaiSanPham" class="form-label">Loại sản phẩm</label>
@@ -55,24 +68,24 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="DiaChi" class="form-label">Đơn giá</label>
-                            <input type="text" class="form-control" id="DiaChi" name="DiaChi" value="<%= DiaChi %>" required>
+                            <label for="DonGia" class="form-label">Đơn giá</label>
+                            <input type="text" class="form-control" id="DonGia" name="DonGia" value="<%= sanpham.DonGia %>" required>
                         </div>
                         <div class="mb-3">
-                            <label for="SoDienThoai" class="form-label">Số lượng</label>
-                            <input type="text" class="form-control" id="SoDienThoai" name="SoDienThoai"
-                                value="<%= SoDienThoai %>" required>
+                            <label for="SoLuong" class="form-label">Số lượng</label>
+                            <input type="number" class="form-control" id="SoLuong" name="SoLuong"
+                                value="<%= sanpham.SoLuong %>" required>
                         </div>
                         <div class="mb-3">
-                            <label for="Email" class="form-label">Đã bán</label>
-                            <input type="email" class="form-control" id="Email" name="Email" value="<%= Email %>" required>
+                            <label for="DaBan" class="form-label">Đã bán</label>
+                            <input type="number" class="form-control" id="DaBan" name="DaBan" value="<%= sanpham.DaBan %>" required>
                         </div>
                         <div class="mb-3">
                             <label for="MaTinhTrang" class="form-label">Tình trạng</label>
                             <select class="form-select" id="MaTinhTrang" name="MaTinhTrang" required>
                                 <option value="">-- Chọn --</option>
                                 <% tinhtrang.forEach(function(tt) { %>
-                                    <% if(lsp.MaTinhTrang == sanpham.MaTinhTrang) { %>
+                                    <% if(tt.MaTinhTrang == sanpham.MaTinhTrang) { %>
                                         <option value="<%= tt.MaTinhTrang %>" selected><%= tt.TinhTrang %></option>
                                     <% } else {%>
                                         <option value="<%= tt.MaTinhTrang %>"><%= tt.TinhTrang %></option>

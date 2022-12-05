@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
                 SELECT * FROM danhmuc ORDER BY MaDanhMuc;\
                 SELECT d.DanhMuc, l.* FROM danhmuc d, loaisanpham l\
                 WHERE d.MaDanhMuc = l.MaDanhMuc\
-                ORDER BY MaDanhMuc'
+                ORDER BY MaDanhMuc;'
     conn.query(sql, function(error, results){
         if(error){
             res.send('/error')
@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
                 title: 'Trang chủ',
                 banner: results[0],
                 danhmuc: results[1],
-                loaisanpham: results[2]
+                loaisanpham: results[2],
             })
         }
     }) 
@@ -29,12 +29,35 @@ router.get('/ao', function(req, res){
                 SELECT d.DanhMuc, l.* FROM danhmuc d, loaisanpham l\
                 WHERE d.MaDanhMuc = l.MaDanhMuc\
                 ORDER BY MaDanhMuc;\
-                SELECT * FROM sanpham'
+                SELECT s.*, h.HinhAnh FROM sanpham s, hinhanh h\
+                WHERE s.MaSanPham = h.MaSanPham AND s.MaDanhMuc = 1'
     conn.query(sql, function(error, results){
         if(error){
             res.send('/error')
         } else {
             res.render('ao', {
+                title: 'Áo',
+                danhmuc: results[0],
+                loaisanpham: results[1],
+                sanpham: results[2]
+            })
+        }
+    }) 
+})
+
+//GET: Quan
+router.get('/quan', function(req, res){
+    var sql = 'SELECT * FROM danhmuc ORDER BY MaDanhMuc;\
+                SELECT d.DanhMuc, l.* FROM danhmuc d, loaisanpham l\
+                WHERE d.MaDanhMuc = l.MaDanhMuc\
+                ORDER BY MaDanhMuc;\
+                SELECT s.*, h.HinhAnh FROM sanpham s, hinhanh h\
+                WHERE s.MaSanPham = h.MaSanPham AND s.MaDanhMuc = 2;'
+    conn.query(sql, function(error, results){
+        if(error){
+            res.send('/error')
+        } else {
+            res.render('quan', {
                 title: 'Trang chủ',
                 danhmuc: results[0],
                 loaisanpham: results[1],
@@ -42,6 +65,28 @@ router.get('/ao', function(req, res){
             })
         }
     }) 
+})
+
+//GET: Phu kien
+router.get('/phukien', function(req, res){
+    var sql = 'SELECT * FROM danhmuc ORDER BY MaDanhMuc;\
+                SELECT d.DanhMuc, l.* FROM danhmuc d, loaisanpham l\
+                WHERE d.MaDanhMuc = l.MaDanhMuc\
+                ORDER BY MaDanhMuc;\
+                SELECT s.*, h.HinhAnh FROM sanpham s, hinhanh h\
+                WHERE s.MaSanPham = h.MaSanPham AND s.MaDanhMuc = 3;'
+    conn.query(sql, function(error, results){
+        if(error){
+            res.send('/error')
+        } else {
+            res.render('phukien', {
+                title: 'Trang chủ',
+                danhmuc: results[0],
+                loaisanpham: results[1],
+                sanpham: results[2]
+            })
+        }
+    })
 })
 
 module.exports = router

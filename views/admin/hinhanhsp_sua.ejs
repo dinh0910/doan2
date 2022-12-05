@@ -21,17 +21,17 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-1">Thêm hình ảnh</h1>
-                    <form action="/admin/hinhanh_sanpham/sua/<%= MaHinhAnh %>" enctype="multipart/form-data" method="post" class="needs-validation">
+                    <h1 class="mt-1">Sửa hình ảnh</h1>
+                    <form action="/admin/hinhanh_sanpham/sua/<%= hinhanh.MaHinhAnh %>" enctype="multipart/form-data" method="post" class="needs-validation">
                         <div class="mb-3">
                             <label for="MaSanPham" class="form-label">Sản phẩm</label>
                             <select class="form-select" id="MaSanPham" name="MaSanPham" required>
                                 <option value="">-- Chọn --</option>
                                 <% sanpham.forEach(function(sp) { %>
                                     <% if(sp.MaSanPham == hinhanh.MaSanPham) { %>
-                                        <option value="<%= sp.MaSanPham %>" selected><%= sp.SanPham %></option>
+                                        <option value="<%= sp.MaSanPham %>" selected><%= sp.TenSanPham %></option>
                                     <% } else {%>
-                                        <option value="<%= sp.MaSanPham %>"><%= sp.SanPham %></option>
+                                        <option value="<%= sp.MaSanPham %>"><%= sp.TenSanPham %></option>
                                     <% } %>
                                 <% }) %>
                             </select>

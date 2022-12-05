@@ -80,9 +80,8 @@ router.get('/sua/:id', function (req, res) {
         } else {
             res.render('admin/hinhanhsp_sua', {
                 title: 'Sửa hình ảnh',
-                MaHinhAnh: results[0].MaHinhAnh,
-                MaSanPham: results[0].MaSanPham,
-                HinhAnh: results[0].HinhAnh
+                hinhanh: results[0].shift(),
+                sanpham: results[1]
             })
         }
     })
@@ -93,7 +92,7 @@ router.post('/sua/:id', upload.single('HinhAnh'), function (req, res) {
     var hinhanh = {
         MaSanPham: req.body.MaSanPham,
     }
-    if(req.file) banner['HinhAnh'] = req.file.filename
+    if(req.file) hinhanh['HinhAnh'] = req.file.filename
     var id = req.params.id;
     var sql = 'UPDATE hinhanh SET ? WHERE MaHinhAnh = ?'
     conn.query(sql, [banner, id], function (error, results) {

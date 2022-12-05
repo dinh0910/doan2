@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 28, 2022 lúc 06:04 AM
--- Phiên bản máy phục vụ: 10.4.27-MariaDB
--- Phiên bản PHP: 8.1.12
+-- Máy chủ: localhost
+-- Thời gian đã tạo: Th12 05, 2022 lúc 05:56 AM
+-- Phiên bản máy phục vụ: 10.4.21-MariaDB
+-- Phiên bản PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,15 +33,31 @@ CREATE TABLE `banner` (
   `MaBanner` int(11) NOT NULL,
   `HinhAnh` varchar(255) DEFAULT NULL,
   `SuDung` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `banner`
 --
 
 INSERT INTO `banner` (`MaBanner`, `HinhAnh`, `SuDung`) VALUES
-(1, '1667452820903.jpg', 1),
-(2, '1667456848443.png', 1);
+(1, '1669713367208.jpg', 1),
+(2, '1669713378914.jpg', 1),
+(3, '1669713388530.jpg', 1),
+(4, '1669713398979.jpg', 1),
+(5, '1669713602470.jpg', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chitietdathang`
+--
+
+CREATE TABLE `chitietdathang` (
+  `MaCTDH` int(11) NOT NULL,
+  `MaDatHang` int(11) DEFAULT NULL,
+  `MaSanPham` int(11) DEFAULT NULL,
+  `DonGia` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -54,16 +70,43 @@ CREATE TABLE `danhmuc` (
   `DanhMuc` varchar(100) DEFAULT NULL,
   `DanhMucURL` varchar(255) DEFAULT NULL,
   `HinhAnh` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhmuc`
 --
 
 INSERT INTO `danhmuc` (`MaDanhMuc`, `DanhMuc`, `DanhMucURL`, `HinhAnh`) VALUES
-(1, 'Áo', 'ao', NULL),
-(2, 'Quần', 'quan', NULL),
-(3, 'Phụ kiện', 'phukien', NULL);
+(1, 'Áo', 'ao', '1669711837233.jpg'),
+(2, 'Quần', 'quan', '1669711844695.jpg'),
+(3, 'Phụ kiện', 'phukien', '1669712215554.jpg'),
+(4, 'Xem thêm', 'xemthem', '1669712278069.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `dondathang`
+--
+
+CREATE TABLE `dondathang` (
+  `MaDatHang` int(11) NOT NULL,
+  `MaTaiKhoan` int(11) DEFAULT NULL,
+  `NgayDat` datetime DEFAULT current_timestamp(),
+  `TongTien` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `giohang`
+--
+
+CREATE TABLE `giohang` (
+  `MaGioHang` int(11) NOT NULL,
+  `MaSanPham` int(11) DEFAULT NULL,
+  `MaTaiKhoan` int(11) DEFAULT NULL,
+  `DonGia` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -75,7 +118,7 @@ CREATE TABLE `hinhanh` (
   `MaHinhAnh` int(11) NOT NULL,
   `MaSanPham` int(11) NOT NULL,
   `HinhAnh` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `hinhanh`
@@ -169,7 +212,7 @@ CREATE TABLE `loaisanpham` (
   `MaDanhMuc` int(11) NOT NULL,
   `LoaiSanPham` varchar(100) DEFAULT NULL,
   `LoaiSanPhamURL` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `loaisanpham`
@@ -194,7 +237,9 @@ INSERT INTO `loaisanpham` (`MaLoaiSanPham`, `MaDanhMuc`, `LoaiSanPham`, `LoaiSan
 (16, 3, 'Vớ', 'vo'),
 (17, 3, 'Nón', 'non'),
 (18, 3, 'Túi', 'tui'),
-(19, 3, 'Balo', 'ba-lo');
+(19, 3, 'Balo', 'ba-lo'),
+(20, 4, 'Giới thiệu', 'gioithieu'),
+(21, 4, 'Blogs', 'blogs');
 
 -- --------------------------------------------------------
 
@@ -205,7 +250,7 @@ INSERT INTO `loaisanpham` (`MaLoaiSanPham`, `MaDanhMuc`, `LoaiSanPham`, `LoaiSan
 CREATE TABLE `quyenhan` (
   `MaQuyenHan` int(11) NOT NULL,
   `QuyenHan` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `quyenhan`
@@ -230,111 +275,112 @@ CREATE TABLE `sanpham` (
   `DonGia` int(11) DEFAULT NULL,
   `SoLuong` int(11) DEFAULT 0,
   `DaBan` tinyint(4) NOT NULL DEFAULT 0,
-  `MaTinhTrang` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `MaTinhTrang` int(11) NOT NULL,
+  `MaDanhMuc` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
-INSERT INTO `sanpham` (`MaSanPham`, `TenSanPham`, `MaLoaiSanPham`, `MaSize`, `DonGia`, `SoLuong`, `DaBan`, `MaTinhTrang`) VALUES
-(1, 'Áo thun SWE', 1, 1, 150000, 0, 1, 1),
-(2, 'Áo Sơ mi S1', 4, 1, 35000, 1, 1, 1),
-(3, 'Áo Sơ mi S2', 4, 1, 40000, 1, 1, 1),
-(4, 'Áo Sơ mi S3', 4, 1, 45000, 1, 1, 1),
-(5, 'Áo Sơ mi S4', 4, 1, 30000, 1, 1, 1),
-(6, 'Áo Sơ mi S5', 4, 1, 35000, 1, 1, 1),
-(7, 'Áo Sơ mi S6', 4, 1, 55000, 1, 1, 1),
-(8, 'Áo Thun T01', 1, 1, 30000, 1, 1, 1),
-(9, 'Áo thun T02', 1, 1, 35000, 1, 1, 1),
-(10, 'Áo Thun T03', 1, 1, 20000, 1, 1, 1),
-(11, 'Áo Thun T04', 1, 1, 45000, 1, 0, 1),
-(12, 'Áo Thun T05', 1, 1, 40000, 1, 0, 1),
-(13, 'Áo Thun T06', 1, 1, 35000, 1, 0, 1),
-(14, 'Áo Thun T07', 1, 1, 40000, 1, 0, 1),
-(15, 'Áo Thun T08', 1, 1, 30000, 1, 0, 1),
-(16, 'Áo Polo P01', 5, 1, 35000, 1, 0, 1),
-(17, 'Áo Polo P02', 5, 1, 30000, 1, 0, 1),
-(18, 'Áo Polo P03', 5, 1, 55000, 1, 0, 1),
-(19, 'Áo Polo P04', 5, 1, 35000, 1, 0, 1),
-(20, 'Áo Polo P05', 5, 1, 20000, 1, 0, 1),
-(21, 'Áo Polo P06', 5, 1, 60000, 1, 0, 1),
-(22, 'Áo Polo P07', 5, 1, 40000, 1, 0, 1),
-(23, 'Áo Khoác K01', 6, 1, 70000, 1, 0, 1),
-(24, 'Áo Khoác K02', 6, 1, 75000, 1, 0, 1),
-(25, 'Áo Khoác K03', 6, 1, 90000, 1, 0, 1),
-(26, 'Áo Khoác K04', 6, 1, 85000, 1, 0, 1),
-(27, 'Áo Khoác K05', 6, 1, 110000, 1, 0, 1),
-(28, 'Áo Khoác K06', 6, 1, 95000, 1, 0, 1),
-(29, 'Áo Khoác K07', 6, 1, 55000, 1, 0, 1),
-(30, 'Áo Khoác K08', 6, 1, 75000, 1, 0, 1),
-(31, 'Áo Vest V01', 7, 1, 150000, 1, 0, 1),
-(32, 'Áo Vest V02', 7, 1, 200000, 1, 0, 1),
-(33, 'Áo Vest V03', 7, 1, 250000, 1, 0, 1),
-(34, 'Áo Len L01', 9, 1, 175000, 1, 0, 1),
-(35, 'Áo Len L02', 9, 1, 195000, 1, 0, 1),
-(36, 'Áo Len L03', 9, 1, 160000, 1, 0, 1),
-(37, 'Áo Len L04', 9, 1, 145000, 1, 0, 1),
-(38, 'Quần Jean J01', 2, 1, 95000, 1, 0, 1),
-(39, 'Quần Jean J02', 2, 1, 120000, 1, 0, 1),
-(40, 'Quần Jean J03', 2, 1, 135000, 1, 0, 1),
-(41, 'Quần Jean J04', 2, 1, 80000, 1, 0, 1),
-(42, 'Quần Jean J05', 2, 1, 55000, 1, 0, 1),
-(43, 'Quần Jean J06', 2, 1, 110000, 1, 0, 1),
-(44, 'Quần Jean J07', 2, 1, 155000, 1, 0, 1),
-(45, 'Quần Tây T01', 10, 1, 80000, 1, 0, 1),
-(46, 'Quần Tây T02', 10, 1, 90000, 1, 0, 1),
-(47, 'Quần Tây T03', 10, 1, 135000, 1, 0, 1),
-(48, 'Quần Tây T04', 10, 1, 95000, 1, 0, 1),
-(49, 'Quần Kaki K01', 11, 1, 75000, 1, 0, 1),
-(50, 'Quần Kaki K02', 11, 1, 70000, 1, 0, 1),
-(51, 'Quần Kaki K03', 11, 1, 65000, 1, 0, 1),
-(52, 'Quần Kaki K04', 11, 1, 85000, 1, 0, 1),
-(53, 'Quần Kaki K05', 11, 1, 90000, 1, 0, 1),
-(54, 'Quần Kaki K06', 11, 1, 55000, 1, 0, 1),
-(55, 'Quần Kaki K07', 11, 1, 85000, 1, 0, 1),
-(56, 'Quần Kaki K08', 11, 1, 75000, 1, 0, 1),
-(57, 'Quần Jogger JG01', 12, 1, 65000, 1, 0, 1),
-(58, 'Quần Jogger JG02', 12, 1, 75000, 1, 0, 1),
-(59, 'Quần Jogger JG03', 12, 1, 55000, 1, 0, 1),
-(60, 'Quần Jogger JG04', 12, 1, 35000, 1, 0, 1),
-(61, 'Quần Jogger JG05', 12, 1, 40000, 1, 0, 1),
-(62, 'Quần Short S01', 13, 1, 40000, 1, 0, 1),
-(63, 'Quần Short S02', 13, 1, 35000, 1, 0, 1),
-(64, 'Quần Short S03', 13, 1, 55000, 1, 0, 1),
-(65, 'Quần Short S04', 13, 1, 50000, 1, 0, 1),
-(66, 'Quần Short S05', 13, 1, 50000, 1, 0, 1),
-(67, 'Quần Short S06', 13, 1, 40000, 1, 0, 1),
-(68, 'Quần Short S07', 13, 1, 40000, 1, 0, 1),
-(69, 'Quần Short S08', 13, 1, 35000, 1, 0, 1),
-(70, 'Quần Lót L01', 14, 1, 15000, 1, 0, 1),
-(71, 'Quần Lót L02', 14, 1, 10000, 1, 0, 1),
-(72, 'Quần Lót L03', 14, 1, 20000, 1, 0, 1),
-(73, 'Quần Lót L04', 14, 1, 15000, 1, 0, 1),
-(74, 'Quần Lót L05', 14, 1, 20000, 1, 0, 1),
-(75, 'Thắt Lưng TL01', 3, 1, 150000, 1, 0, 1),
-(76, 'Thắt Lưng TL02', 3, 1, 120000, 1, 0, 1),
-(77, 'Thắt Lưng TL03', 3, 1, 135000, 1, 0, 1),
-(78, 'Thắt Lưng TL04', 3, 1, 145000, 1, 0, 1),
-(79, 'Ví Da V01', 15, 1, 90000, 1, 0, 1),
-(80, 'Ví Da V02', 15, 1, 75000, 1, 0, 1),
-(81, 'Vớ 01', 16, 1, 10000, 1, 0, 1),
-(82, 'Vớ 02', 16, 1, 15000, 1, 0, 1),
-(83, 'Vớ 03', 16, 1, 20000, 1, 0, 1),
-(84, 'Vớ 04', 16, 1, 15000, 1, 0, 1),
-(85, 'Vớ 05', 16, 1, 15000, 1, 0, 1),
-(86, 'Nón N01', 17, 1, 35000, 1, 0, 1),
-(87, 'Nón N02', 17, 1, 40000, 1, 0, 1),
-(88, 'Nón N03', 17, 1, 25000, 1, 0, 1),
-(89, 'Nón N04', 17, 1, 25000, 1, 0, 1),
-(90, 'Nón N05', 17, 1, 40000, 1, 0, 1),
-(91, 'Túi T01', 18, 1, 110000, 1, 0, 1),
-(92, 'Túi T02', 18, 1, 120000, 1, 0, 1),
-(93, 'Túi T03', 18, 1, 135000, 1, 0, 1),
-(94, 'Túi T04', 18, 1, 140000, 1, 0, 1),
-(95, 'Balo B01', 19, 1, 150000, 1, 0, 1),
-(96, 'Balo B02', 19, 1, 75000, 1, 0, 1),
-(97, 'Balo B03', 19, 1, 190000, 1, 0, 1);
+INSERT INTO `sanpham` (`MaSanPham`, `TenSanPham`, `MaLoaiSanPham`, `MaSize`, `DonGia`, `SoLuong`, `DaBan`, `MaTinhTrang`, `MaDanhMuc`) VALUES
+(1, 'Áo thun SWE', 1, 1, 150000, 0, 1, 1, 1),
+(2, 'Áo Sơ mi S1', 4, 1, 35000, 1, 1, 1, 1),
+(3, 'Áo Sơ mi S2', 4, 1, 40000, 1, 1, 1, 1),
+(4, 'Áo Sơ mi S3', 4, 1, 45000, 1, 1, 1, 1),
+(5, 'Áo Sơ mi S4', 4, 1, 30000, 1, 1, 1, 1),
+(6, 'Áo Sơ mi S5', 4, 1, 35000, 1, 1, 1, 1),
+(7, 'Áo Sơ mi S6', 4, 1, 55000, 1, 1, 1, 1),
+(8, 'Áo Thun T01', 1, 1, 30000, 1, 1, 1, 1),
+(9, 'Áo thun T02', 1, 1, 35000, 1, 1, 1, 1),
+(10, 'Áo Thun T03', 1, 1, 20000, 1, 1, 1, 1),
+(11, 'Áo Thun T04', 1, 1, 45000, 1, 0, 1, 1),
+(12, 'Áo Thun T05', 1, 1, 40000, 1, 0, 1, 1),
+(13, 'Áo Thun T06', 1, 1, 35000, 1, 0, 1, 1),
+(14, 'Áo Thun T07', 1, 1, 40000, 1, 0, 1, 1),
+(15, 'Áo Thun T08', 1, 1, 30000, 1, 0, 1, 1),
+(16, 'Áo Polo P01', 5, 1, 35000, 1, 0, 1, 1),
+(17, 'Áo Polo P02', 5, 1, 30000, 1, 0, 1, 1),
+(18, 'Áo Polo P03', 5, 1, 55000, 1, 0, 1, 1),
+(19, 'Áo Polo P04', 5, 1, 35000, 1, 0, 1, 1),
+(20, 'Áo Polo P05', 5, 1, 20000, 1, 0, 1, 1),
+(21, 'Áo Polo P06', 5, 1, 60000, 1, 0, 1, 1),
+(22, 'Áo Polo P07', 5, 1, 40000, 1, 0, 1, 1),
+(23, 'Áo Khoác K01', 6, 1, 70000, 1, 0, 1, 1),
+(24, 'Áo Khoác K02', 6, 1, 75000, 1, 0, 1, 1),
+(25, 'Áo Khoác K03', 6, 1, 90000, 1, 0, 1, 1),
+(26, 'Áo Khoác K04', 6, 1, 85000, 1, 0, 1, 1),
+(27, 'Áo Khoác K05', 6, 1, 110000, 1, 0, 1, 1),
+(28, 'Áo Khoác K06', 6, 1, 95000, 1, 0, 1, 1),
+(29, 'Áo Khoác K07', 6, 1, 55000, 1, 0, 1, 1),
+(30, 'Áo Khoác K08', 6, 1, 75000, 1, 0, 1, 1),
+(31, 'Áo Vest V01', 7, 1, 150000, 1, 0, 1, 1),
+(32, 'Áo Vest V02', 7, 1, 200000, 1, 0, 1, 1),
+(33, 'Áo Vest V03', 7, 1, 250000, 1, 0, 1, 1),
+(34, 'Áo Len L01', 9, 1, 175000, 1, 0, 1, 1),
+(35, 'Áo Len L02', 9, 1, 195000, 1, 0, 1, 1),
+(36, 'Áo Len L03', 9, 1, 160000, 1, 0, 1, 1),
+(37, 'Áo Len L04', 9, 1, 145000, 1, 0, 1, 1),
+(38, 'Quần Jean J01', 2, 1, 95000, 1, 0, 1, 2),
+(39, 'Quần Jean J02', 2, 1, 120000, 1, 0, 1, 2),
+(40, 'Quần Jean J03', 2, 1, 135000, 1, 0, 1, 2),
+(41, 'Quần Jean J04', 2, 1, 80000, 1, 0, 1, 2),
+(42, 'Quần Jean J05', 2, 1, 55000, 1, 0, 1, 2),
+(43, 'Quần Jean J06', 2, 1, 110000, 1, 0, 1, 2),
+(44, 'Quần Jean J07', 2, 1, 155000, 1, 0, 1, 2),
+(45, 'Quần Tây T01', 10, 1, 80000, 1, 0, 1, 2),
+(46, 'Quần Tây T02', 10, 1, 90000, 1, 0, 1, 2),
+(47, 'Quần Tây T03', 10, 1, 135000, 1, 0, 1, 2),
+(48, 'Quần Tây T04', 10, 1, 95000, 1, 0, 1, 2),
+(49, 'Quần Kaki K01', 11, 1, 75000, 1, 0, 1, 2),
+(50, 'Quần Kaki K02', 11, 1, 70000, 1, 0, 1, 2),
+(51, 'Quần Kaki K03', 11, 1, 65000, 1, 0, 1, 2),
+(52, 'Quần Kaki K04', 11, 1, 85000, 1, 0, 1, 2),
+(53, 'Quần Kaki K05', 11, 1, 90000, 1, 0, 1, 2),
+(54, 'Quần Kaki K06', 11, 1, 55000, 1, 0, 1, 2),
+(55, 'Quần Kaki K07', 11, 1, 85000, 1, 0, 1, 2),
+(56, 'Quần Kaki K08', 11, 1, 75000, 1, 0, 1, 2),
+(57, 'Quần Jogger JG01', 12, 1, 65000, 1, 0, 1, 2),
+(58, 'Quần Jogger JG02', 12, 1, 75000, 1, 0, 1, 2),
+(59, 'Quần Jogger JG03', 12, 1, 55000, 1, 0, 1, 2),
+(60, 'Quần Jogger JG04', 12, 1, 35000, 1, 0, 1, 2),
+(61, 'Quần Jogger JG05', 12, 1, 40000, 1, 0, 1, 2),
+(62, 'Quần Short S01', 13, 1, 40000, 1, 0, 1, 2),
+(63, 'Quần Short S02', 13, 1, 35000, 1, 0, 1, 2),
+(64, 'Quần Short S03', 13, 1, 55000, 1, 0, 1, 2),
+(65, 'Quần Short S04', 13, 1, 50000, 1, 0, 1, 2),
+(66, 'Quần Short S05', 13, 1, 50000, 1, 0, 1, 2),
+(67, 'Quần Short S06', 13, 1, 40000, 1, 0, 1, 2),
+(68, 'Quần Short S07', 13, 1, 40000, 1, 0, 1, 2),
+(69, 'Quần Short S08', 13, 1, 35000, 1, 0, 1, 2),
+(70, 'Quần Lót L01', 14, 1, 15000, 1, 0, 1, 2),
+(71, 'Quần Lót L02', 14, 1, 10000, 1, 0, 1, 2),
+(72, 'Quần Lót L03', 14, 1, 20000, 1, 0, 1, 2),
+(73, 'Quần Lót L04', 14, 1, 15000, 1, 0, 1, 2),
+(74, 'Quần Lót L05', 14, 1, 20000, 1, 0, 1, 2),
+(75, 'Thắt Lưng TL01', 3, 1, 150000, 1, 0, 1, 3),
+(76, 'Thắt Lưng TL02', 3, 1, 120000, 1, 0, 1, 3),
+(77, 'Thắt Lưng TL03', 3, 1, 135000, 1, 0, 1, 3),
+(78, 'Thắt Lưng TL04', 3, 1, 145000, 1, 0, 1, 3),
+(79, 'Ví Da V01', 15, 1, 90000, 1, 0, 1, 3),
+(80, 'Ví Da V02', 15, 1, 75000, 1, 0, 1, 3),
+(81, 'Vớ 01', 16, 1, 10000, 1, 0, 1, 3),
+(82, 'Vớ 02', 16, 1, 15000, 1, 0, 1, 3),
+(83, 'Vớ 03', 16, 1, 20000, 1, 0, 1, 3),
+(84, 'Vớ 04', 16, 1, 15000, 1, 0, 1, 3),
+(85, 'Vớ 05', 16, 1, 15000, 1, 0, 1, 3),
+(86, 'Nón N01', 17, 1, 35000, 1, 0, 1, 3),
+(87, 'Nón N02', 17, 1, 40000, 1, 0, 1, 3),
+(88, 'Nón N03', 17, 1, 25000, 1, 0, 1, 3),
+(89, 'Nón N04', 17, 1, 25000, 1, 0, 1, 3),
+(90, 'Nón N05', 17, 1, 40000, 1, 0, 1, 3),
+(91, 'Túi T01', 18, 1, 110000, 1, 0, 1, 3),
+(92, 'Túi T02', 18, 1, 120000, 1, 0, 1, 3),
+(93, 'Túi T03', 18, 1, 135000, 1, 0, 1, 3),
+(94, 'Túi T04', 18, 1, 140000, 1, 0, 1, 3),
+(95, 'Balo B01', 19, 1, 150000, 1, 0, 1, 3),
+(96, 'Balo B02', 19, 1, 75000, 1, 0, 1, 3),
+(97, 'Balo B03', 19, 1, 190000, 1, 0, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -345,7 +391,7 @@ INSERT INTO `sanpham` (`MaSanPham`, `TenSanPham`, `MaLoaiSanPham`, `MaSize`, `Do
 CREATE TABLE `size` (
   `MaSize` int(11) NOT NULL,
   `Size` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `size`
@@ -370,7 +416,7 @@ CREATE TABLE `taikhoan` (
   `Email` varchar(100) DEFAULT NULL,
   `MaQuyenHan` int(11) NOT NULL DEFAULT 3,
   `TinhTrang` tinyint(4) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `taikhoan`
@@ -389,7 +435,7 @@ INSERT INTO `taikhoan` (`MaTaiKhoan`, `TenTaiKhoan`, `MatKhau`, `HoTen`, `DiaChi
 CREATE TABLE `tinhtrang` (
   `MaTinhTrang` int(11) NOT NULL,
   `TinhTrang` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `tinhtrang`
@@ -409,10 +455,33 @@ ALTER TABLE `banner`
   ADD PRIMARY KEY (`MaBanner`);
 
 --
+-- Chỉ mục cho bảng `chitietdathang`
+--
+ALTER TABLE `chitietdathang`
+  ADD PRIMARY KEY (`MaCTDH`),
+  ADD KEY `MaDatHang` (`MaDatHang`),
+  ADD KEY `MaSanPham` (`MaSanPham`);
+
+--
 -- Chỉ mục cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
   ADD PRIMARY KEY (`MaDanhMuc`);
+
+--
+-- Chỉ mục cho bảng `dondathang`
+--
+ALTER TABLE `dondathang`
+  ADD PRIMARY KEY (`MaDatHang`),
+  ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
+
+--
+-- Chỉ mục cho bảng `giohang`
+--
+ALTER TABLE `giohang`
+  ADD PRIMARY KEY (`MaGioHang`),
+  ADD KEY `MaSanPham` (`MaSanPham`),
+  ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
 
 --
 -- Chỉ mục cho bảng `hinhanh`
@@ -441,7 +510,8 @@ ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`MaSanPham`),
   ADD KEY `MaLoaiSanPham` (`MaLoaiSanPham`),
   ADD KEY `MaSize` (`MaSize`),
-  ADD KEY `MaTinhTrang` (`MaTinhTrang`);
+  ADD KEY `MaTinhTrang` (`MaTinhTrang`),
+  ADD KEY `MaDanhMuc` (`MaDanhMuc`);
 
 --
 -- Chỉ mục cho bảng `size`
@@ -470,13 +540,19 @@ ALTER TABLE `tinhtrang`
 -- AUTO_INCREMENT cho bảng `banner`
 --
 ALTER TABLE `banner`
-  MODIFY `MaBanner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `MaBanner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `MaDanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `MaDanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `giohang`
+--
+ALTER TABLE `giohang`
+  MODIFY `MaGioHang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `hinhanh`
@@ -488,7 +564,7 @@ ALTER TABLE `hinhanh`
 -- AUTO_INCREMENT cho bảng `loaisanpham`
 --
 ALTER TABLE `loaisanpham`
-  MODIFY `MaLoaiSanPham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `MaLoaiSanPham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `quyenhan`
@@ -525,6 +601,26 @@ ALTER TABLE `tinhtrang`
 --
 
 --
+-- Các ràng buộc cho bảng `chitietdathang`
+--
+ALTER TABLE `chitietdathang`
+  ADD CONSTRAINT `chitietdathang_ibfk_1` FOREIGN KEY (`MaDatHang`) REFERENCES `dondathang` (`MaDatHang`),
+  ADD CONSTRAINT `chitietdathang_ibfk_2` FOREIGN KEY (`MaSanPham`) REFERENCES `sanpham` (`MaSanPham`);
+
+--
+-- Các ràng buộc cho bảng `dondathang`
+--
+ALTER TABLE `dondathang`
+  ADD CONSTRAINT `dondathang_ibfk_1` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `taikhoan` (`MaTaiKhoan`);
+
+--
+-- Các ràng buộc cho bảng `giohang`
+--
+ALTER TABLE `giohang`
+  ADD CONSTRAINT `giohang_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `sanpham` (`MaSanPham`),
+  ADD CONSTRAINT `giohang_ibfk_2` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `taikhoan` (`MaTaiKhoan`);
+
+--
 -- Các ràng buộc cho bảng `hinhanh`
 --
 ALTER TABLE `hinhanh`
@@ -542,7 +638,8 @@ ALTER TABLE `loaisanpham`
 ALTER TABLE `sanpham`
   ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`MaLoaiSanPham`) REFERENCES `loaisanpham` (`MaLoaiSanPham`),
   ADD CONSTRAINT `sanpham_ibfk_2` FOREIGN KEY (`MaSize`) REFERENCES `size` (`MaSize`),
-  ADD CONSTRAINT `sanpham_ibfk_3` FOREIGN KEY (`MaTinhTrang`) REFERENCES `tinhtrang` (`MaTinhTrang`);
+  ADD CONSTRAINT `sanpham_ibfk_3` FOREIGN KEY (`MaTinhTrang`) REFERENCES `tinhtrang` (`MaTinhTrang`),
+  ADD CONSTRAINT `sanpham_ibfk_4` FOREIGN KEY (`MaDanhMuc`) REFERENCES `danhmuc` (`MaDanhMuc`);
 
 --
 -- Các ràng buộc cho bảng `taikhoan`

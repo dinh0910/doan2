@@ -22,7 +22,7 @@
             <main>
                 <div class="container-fluid px-4">
                     <h1 class="mt-1">Danh mục</h1>
-                    <form action="/admin/danhmuc/them" method="post" class="needs-validation" novalidate>
+                    <form action="/admin/danhmuc/them" enctype="multipart/form-data" method="post" class="needs-validation">
                         <div class="mb-3">
                             <label for="DanhMuc" class="form-label">Danh mục</label>
                             <input type="text" class="form-control" id="DanhMuc" name="DanhMuc" required>
@@ -30,6 +30,10 @@
                         <div class="mb-3">
                             <label for="DanhMucURL" class="form-label">Tên URL</label>
                             <input type="text" class="form-control" id="DanhMucURL" name="DanhMucURL" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="HinhAnh" class="form-label">Hình ảnh</label>
+                            <input type="file" class="form-control" id="HinhAnh" name="HinhAnh" />
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary">Thêm</button>

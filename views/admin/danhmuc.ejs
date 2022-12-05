@@ -28,9 +28,10 @@
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Danh mục</th>
-                                <th>Tên URL</th>
-                                <th>Sửa</th>
+                                    <th>Danh mục</th>
+                                        <th>Tên URL</th>
+                                        <th>Hình ảnh</th>
+                                    <th>Sửa</th>
                                 <th>Xóa</th>
                             </tr>
                         </thead>
@@ -39,9 +40,10 @@
                             <% danhmuc.forEach(function(dm){ %> 
                                 <tr>
                                     <td><%= stt++ %></td>
-                                    <td><%= dm.DanhMuc %></td>
-                                    <td><%= dm.DanhMucURL %></td>
-                                    <td><a href="/admin/danhmuc/sua/<%= dm.MaDanhMuc %>" class="nav-link icon-hover-edit"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                        <td><%= dm.DanhMuc %></td>
+                                            <td><%= dm.DanhMucURL %></td>
+                                            <td><img src="/uploads/category/<%= dm.HinhAnh %>" class="img-thumbnail" width="100" /></td>
+                                        <td><a href="/admin/danhmuc/sua/<%= dm.MaDanhMuc %>" class="nav-link icon-hover-edit"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                     <td><a href="/admin/danhmuc/xoa/<%= dm.MaDanhMuc %>" class=" nav-link icon-hover-delete"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                             <% }) %> 

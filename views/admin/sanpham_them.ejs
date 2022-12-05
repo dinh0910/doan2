@@ -28,6 +28,15 @@
                             <input type="text" class="form-control" id="TenSanPham" name="TenSanPham" required>
                         </div>
                         <div class="mb-3">
+                            <label for="MaDanhMuc" class="form-label">Danh mục</label>
+                            <select class="form-select" id="MaDanhMuc" name="MaDanhMuc" required>
+                                <option value="">-- Chọn --</option>
+                                <% danhmuc.forEach(function(dm) { %>
+                                    <option value="<%= dm.MaDanhMuc %>"><%= dm.DanhMuc %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label for="MaLoaiSanPham" class="form-label">Loại sản phẩm</label>
                             <select class="form-select" id="MaLoaiSanPham" name="MaLoaiSanPham" required>
                                 <option value="">-- Chọn --</option>

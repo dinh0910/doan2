@@ -4,8 +4,9 @@ var conn = require('../connect')
 
 //GET: Danh sách sản phẩm
 router.get('/', function(req, res){
-    var sql = 'SELECT p.*, l.LoaiSanPham, s.Size, t.TinhTrang FROM sanpham p, loaisanpham l, size s, tinhtrang t \
+    var sql = 'SELECT p.*, l.LoaiSanPham, s.Size, t.TinhTrang, d.DanhMuc FROM sanpham p, loaisanpham l, size s, tinhtrang t, danhmuc d\
                 WHERE p.MaLoaiSanPham = l.MaLoaiSanPham AND p.MaSize = s.MaSize AND p.MaTinhTrang = t.MaTinhTrang\
+                AND p.MaDanhMuc = d.MaDanhMuc\
                 ORDER BY MaSanPham'
     conn.query(sql, function (error, results) {
         if (error) {
@@ -24,7 +25,8 @@ router.get('/', function(req, res){
 router.get('/them', function (req, res) {
     var sql = 'SELECT * FROM loaisanpham ORDER BY MaLoaiSanPham; \
                 SELECT * FROM size ORDER BY MaSize; \
-                SELECT * FROM tinhtrang ORDER BY MaTinhTrang;'
+                SELECT * FROM tinhtrang ORDER BY MaTinhTrang;\
+                SELECT * FROM danhmuc ORDER BY MaDanhMuc;'
 	conn.query(sql, function(error, results){
 		if(error) {
 			req.session.error = error;
@@ -34,7 +36,8 @@ router.get('/them', function (req, res) {
 				title: 'Thêm sản phẩm',
 				loaisanpham: results[0],
                 size: results[1],
-                tinhtrang: results[2]
+                tinhtrang: results[2],
+                danhmuc: results[3]
 			})
 		}
 	})
@@ -48,7 +51,8 @@ router.post('/them', function (req, res) {
         MaSize: req.body.MaSize,
         DonGia: req.body.DonGia,
         SoLuong: req.body.SoLuong,
-        MaTinhTrang: req.body.MaTinhTrang
+        MaTinhTrang: req.body.MaTinhTrang,
+        MaDanhMuc: req.body.MaDanhMuc
     }
     var sql = "INSERT INTO sanpham SET ?"
     conn.query(sql, sanpham, function (error, results) {
@@ -67,7 +71,8 @@ router.get('/sua/:id', function (req, res) {
 	var sql = 'SELECT * FROM sanpham WHERE MaSanPham = ?;\
 			   SELECT * FROM loaisanpham ORDER BY MaLoaiSanPham; \
                SELECT * FROM size ORDER BY MaSize; \
-               SELECT * FROM tinhtrang ORDER BY MaTinhTrang;'            
+               SELECT * FROM tinhtrang ORDER BY MaTinhTrang;\
+               SELECT * FROM danhmuc ORDER BY MaDanhMuc;'            
 	conn.query(sql, [id], function(error, results){
 		if(error) {
 			req.session.error = error
@@ -78,7 +83,8 @@ router.get('/sua/:id', function (req, res) {
 			    sanpham: results[0].shift(),
 				loaisanpham: results[1],
                 size: results[2],
-                tinhtrang: results[3]
+                tinhtrang: results[3],
+                danhmuc: results[4]
 			})
 		}
 	})
@@ -93,7 +99,8 @@ router.post('/sua/:id', function (req, res) {
         DonGia: req.body.DonGia,
         SoLuong: req.body.SoLuong,
         DaBan: req.body.DaBan,
-        MaTinhTrang: req.body.MaTinhTrang
+        MaTinhTrang: req.body.MaTinhTrang,
+        MaDanhMuc: req.body.MaDanhMuc
     }
     var id = req.params.id
     var sql = 'UPDATE sanpham SET ? WHERE MaSanPham = ?'

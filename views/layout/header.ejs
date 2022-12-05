@@ -29,7 +29,7 @@
                     </li>
 
                     <% danhmuc.forEach(function(dm){ %>
-                        <li class="nav-item mx-5">
+                        <li class="nav-item mx-4">
                             <div class="dropdown">
                                 <a class="position-relative text-decoration-none" role="button"><%= dm.DanhMuc %></a>
                                 <ul class="dropdown-menu">
@@ -43,7 +43,7 @@
                         </li>
                     <% }) %>
 
-                    <li class="nav-item mx-4">
+                    <li class="nav-item mx-2">
                         <!-- <div class="dropdown">
                             <a class="nav-icon d-none d-lg-inline" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-fw fa-bars text-dark"></i>
@@ -54,7 +54,7 @@
                                 <% //}) %>
                             </ul>
                         </div> -->
-                        <div class="dropstart">
+                        <!-- <div class="dropstart">
                             <a href="#" data-bs-toggle="dropdown" class="nav-icon d-none d-lg-inline" role="button" aria-expanded="false">
                                 <i class="fa fa-fw fa-bars text-dark"></i>
                             </a>               
@@ -95,15 +95,23 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </li>
 
                     <li class="nav-item mx-4">
-                        <a class="nav-icon position-relative text-decoration-none" href="#">
-                            <i class="fa fa-fw fa-cart-arrow-down text-dark"></i>
-                            <!-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
-                            </span> -->
-                        </a>
+                        <% if(!session.MaTaiKhoan) { %> 
+                            <a class="nav-icon position-relative text-decoration-none" href="/dangnhap">
+                                <i class="fa fa-fw fa-cart-arrow-down text-dark"></i>
+                                <!-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
+                                </span> -->
+                            </a>
+                        <% } else { %>
+                            <a class="nav-icon position-relative text-decoration-none" href="/giohang">
+                                <i class="fa fa-fw fa-cart-arrow-down text-dark"></i>
+                                <!-- <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">
+                                </span> -->
+                            </a>
+                        <% } %> 
                     </li>
 
                     <li class="nav-item ms-4">

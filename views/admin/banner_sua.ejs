@@ -22,10 +22,10 @@
             <main>
                 <div class="container-fluid px-4">
                     <h1 class="mt-1">Sửa banner</h1>
-                    <form action="/admin/banner/sua/<%= MaBanner %>" method="post" class="needs-validation">
+                    <form action="/admin/banner/sua/<%= MaBanner %>" enctype="multipart/form-data" method="post" class="needs-validation">
                         <div class="mb-3">
-                            <label for="HinhAnh" class="form-label">Hình ảnh/label>
-                            <input type="text" class="form-control" id="HinhAnh" name="HinhAnh"
+                            <label for="HinhAnh" class="form-label">Hình ảnh</label>
+                            <input type="file" class="form-control" id="HinhAnh" name="HinhAnh"
                                 required>
                         </div>
                         <div class="mb-3">
