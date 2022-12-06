@@ -2,25 +2,6 @@ var express = require('express')
 var router = express.Router()
 var conn = require('../connect')
 
-router.get('/', function(req, res){
-    var sql = 'SELECT * FROM danhmuc ORDER BY MaDanhMuc;\
-                SELECT d.DanhMuc, l.* FROM danhmuc d, loaisanpham l\
-                WHERE d.MaDanhMuc = l.MaDanhMuc\
-                ORDER BY MaDanhMuc;'
-    conn.query(sql, function(error, results){
-        if(error){
-            res.send('/error')
-        } else {
-            res.render('giohang', {
-                title: 'Giỏ hàng',
-                danhmuc: results[0],
-                loaisanpham: results[1],
-            })
-        }
-    }) 
-})
-
-//POST: Ao
 var cart_data, cart = {}
 router.post('/', function(req, res){
     cart = req.session.cart
@@ -42,6 +23,7 @@ router.post('/', function(req, res){
             if(err){
                 res.send('/error')
             } else {
+                cart_data = results[2]
                 res.render('giohang', {
                     title: 'Giỏ hàng',
                     danhmuc: results[0],
@@ -54,6 +36,26 @@ router.post('/', function(req, res){
     } else {
         res.redirect('/ao')
     }
+})
+
+router.get('/', function(req, res){
+    var sql = 'SELECT * FROM danhmuc ORDER BY MaDanhMuc;\
+                SELECT d.DanhMuc, l.* FROM danhmuc d, loaisanpham l\
+                WHERE d.MaDanhMuc = l.MaDanhMuc\
+                ORDER BY MaDanhMuc;'
+    conn.query(sql, function(error, results){
+        if(error){
+            res.send('/error')
+        } else {
+            res.render('giohang', {
+                title: 'Giỏ hàng',
+                danhmuc: results[0],
+                loaisanpham: results[1],
+                cart_data: cart_data,
+                cart: cart
+            })
+        }
+    }) 
 })
 
 module.exports = router
