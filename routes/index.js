@@ -23,21 +23,21 @@ router.get('/', function(req, res) {
     }) 
 })
 
-//GET: Ao
+//GET: Sản phẩm
 router.get('/:category', function(req, res){
-    var category = req.path
+    var category = req.params.category
     var sql = "SELECT * FROM danhmuc ORDER BY MaDanhMuc;\
                 SELECT d.DanhMuc, l.* FROM danhmuc d, loaisanpham l\
                 WHERE d.MaDanhMuc = l.MaDanhMuc\
                 ORDER BY MaDanhMuc;\
                 SELECT s.*, h.HinhAnh FROM sanpham s, hinhanh h, danhmuc d\
-                WHERE s.MaSanPham = h.MaSanPham AND d.MaDanhMuc = s.MaDanhMuc AND d.DanhMucURL = '%?%'"
-    conn.query(sql, category, function(error, results){
+                WHERE s.MaSanPham = h.MaSanPham AND s.MaDanhMuc = d.MaDanhMuc AND d.DanhMucURL = ?"
+    conn.query(sql, [category], function(error, results){
         if(error){
             res.send('/error')
         } else {
-            res.render('ao', {
-                title: 'Áo',
+            res.render('sanpham', {
+                title: 'Các sản phẩm',
                 danhmuc: results[0],
                 loaisanpham: results[1],
                 sanpham: results[2]
@@ -46,48 +46,27 @@ router.get('/:category', function(req, res){
     }) 
 })
 
-// //GET: Quan
-// router.get('/quan', function(req, res){
-//     var sql = 'SELECT * FROM danhmuc ORDER BY MaDanhMuc;\
-//                 SELECT d.DanhMuc, l.* FROM danhmuc d, loaisanpham l\
-//                 WHERE d.MaDanhMuc = l.MaDanhMuc\
-//                 ORDER BY MaDanhMuc;\
-//                 SELECT s.*, h.HinhAnh FROM sanpham s, hinhanh h\
-//                 WHERE s.MaSanPham = h.MaSanPham AND s.MaDanhMuc = 2;'
-//     conn.query(sql, function(error, results){
-//         if(error){
-//             res.send('/error')
-//         } else {
-//             res.render('quan', {
-//                 title: 'Trang chủ',
-//                 danhmuc: results[0],
-//                 loaisanpham: results[1],
-//                 sanpham: results[2]
-//             })
-//         }
-//     }) 
-// })
-
-// //GET: Phu kien
-// router.get('/phukien', function(req, res){
-//     var sql = 'SELECT * FROM danhmuc ORDER BY MaDanhMuc;\
-//                 SELECT d.DanhMuc, l.* FROM danhmuc d, loaisanpham l\
-//                 WHERE d.MaDanhMuc = l.MaDanhMuc\
-//                 ORDER BY MaDanhMuc;\
-//                 SELECT s.*, h.HinhAnh FROM sanpham s, hinhanh h\
-//                 WHERE s.MaSanPham = h.MaSanPham AND s.MaDanhMuc = 3;'
-//     conn.query(sql, function(error, results){
-//         if(error){
-//             res.send('/error')
-//         } else {
-//             res.render('phukien', {
-//                 title: 'Trang chủ',
-//                 danhmuc: results[0],
-//                 loaisanpham: results[1],
-//                 sanpham: results[2]
-//             })
-//         }
-//     })
-// })
+//GET: Loại sản phẩm
+router.get('/:category', function(req, res){
+    var category = req.params.category
+    var sql = "SELECT * FROM danhmuc ORDER BY MaDanhMuc;\
+                SELECT d.DanhMuc, l.* FROM danhmuc d, loaisanpham l\
+                WHERE d.MaDanhMuc = l.MaDanhMuc\
+                ORDER BY MaDanhMuc;\
+                SELECT s.*, h.HinhAnh FROM sanpham s, hinhanh h, danhmuc d\
+                WHERE s.MaSanPham = h.MaSanPham AND s.MaDanhMuc = d.MaDanhMuc AND d.DanhMucURL = ?"
+    conn.query(sql, [category], function(error, results){
+        if(error){
+            res.send('/error')
+        } else {
+            res.render('sanpham', {
+                title: 'Các sản phẩm',
+                danhmuc: results[0],
+                loaisanpham: results[1],
+                sanpham: results[2]
+            })
+        }
+    }) 
+})
 
 module.exports = router
