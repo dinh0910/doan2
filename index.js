@@ -17,6 +17,7 @@ var hinhanhSPRouter = require('./routes/hinhanhsp')
 var tinhtrangRouter = require('./routes/tinhtrang')
 var thongtincanhanRouter = require('./routes/thongtincanhan')
 var giohangRouter = require('./routes/giohang')
+var sanpham_userRouter = require('./routes/sanpham_user')
 // var aoRouter = require('./routes/ao')
 
 app.set('views', './views')
@@ -67,6 +68,7 @@ app.use('/admin/hinhanhsp', hinhanhSPRouter)
 app.use('/admin/tinhtrang', tinhtrangRouter)
 app.use('/thongtincanhan', thongtincanhanRouter)
 app.use('/giohang', giohangRouter)
+app.use('/sanpham', sanpham_userRouter)
 // app.use('/ao', aoRouter)
 
 app.listen(3000, function () {

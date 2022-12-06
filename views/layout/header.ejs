@@ -35,7 +35,7 @@
                                 <ul class="dropdown-menu">
                                     <% loaisanpham.forEach(function(lsp){ %>
                                         <% if(lsp.MaDanhMuc == dm.MaDanhMuc) { %> 
-                                            <li class="dropdown-item"><%= lsp.LoaiSanPham %></li>
+                                            <li class="dropdown-item"><a class="text-decoration-none" href="/sanpham/<%= dm.DanhMucURL %>/<%= lsp.LoaiSanPhamURL %>"><%= lsp.LoaiSanPham %></a></li>
                                         <% } %>
                                     <% }) %>
                                 </ul>

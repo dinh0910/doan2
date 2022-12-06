@@ -196,9 +196,9 @@ body, ul, li, p, a, label, input, div {
   margin-top: auto;
   /* height: 60px; */
   border-radius: 30px;
-  padding: 10px;
+  padding: 8px;
   border-style: solid;
-  max-width: 500px;
+  max-width: 375px;
   min-width: auto;
 }
 
@@ -208,12 +208,12 @@ body, ul, li, p, a, label, input, div {
   /* border-style: solid; */
   outline: 0;
   background: none;
-  width: 400px;
+  width: 305px;
   /* border-radius: 30px; */
   /* caret-color:transparent; */
   /* line-height: 40px; */
   /* transition: width 0.4s linear; */
-  padding-left: 15px;
+  padding-left: 10px;
 }
 
 /* .searchbar:hover > .search_input{

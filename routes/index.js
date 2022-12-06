@@ -23,8 +23,12 @@ router.get('/', function(req, res) {
     }) 
 })
 
+// router.get('/giohang', function(req, res){
+//     res.render('giohang', {title: 'Giỏ hàng'})
+// })
+
 //GET: Sản phẩm
-router.get('/:category', function(req, res){
+router.get('/sanpham/:category', function(req, res){
     var category = req.params.category
     var sql = "SELECT * FROM danhmuc ORDER BY MaDanhMuc;\
                 SELECT d.DanhMuc, l.* FROM danhmuc d, loaisanpham l\
@@ -47,15 +51,16 @@ router.get('/:category', function(req, res){
 })
 
 //GET: Loại sản phẩm
-router.get('/:category', function(req, res){
-    var category = req.params.category
+router.get('/sanpham/:category/:type', function(req, res){
+    var type = req.params.type
     var sql = "SELECT * FROM danhmuc ORDER BY MaDanhMuc;\
                 SELECT d.DanhMuc, l.* FROM danhmuc d, loaisanpham l\
                 WHERE d.MaDanhMuc = l.MaDanhMuc\
                 ORDER BY MaDanhMuc;\
-                SELECT s.*, h.HinhAnh FROM sanpham s, hinhanh h, danhmuc d\
-                WHERE s.MaSanPham = h.MaSanPham AND s.MaDanhMuc = d.MaDanhMuc AND d.DanhMucURL = ?"
-    conn.query(sql, [category], function(error, results){
+                SELECT s.*, h.HinhAnh FROM sanpham s, hinhanh h, loaisanpham l\
+                WHERE s.MaSanPham = h.MaSanPham AND s.MaLoaiSanPham = l.MaLoaiSanPham\
+                AND l.LoaiSanPhamURL = ?"
+    conn.query(sql, [type], function(error, results){
         if(error){
             res.send('/error')
         } else {

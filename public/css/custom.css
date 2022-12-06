@@ -7,7 +7,6 @@
 
 .dropdown:hover .dropdown-menu{
     display: block;
-    margin-top: 5px;
 }
 
 .currSign:after {
