@@ -2,7 +2,7 @@ var express = require('express')
 var router = express.Router()
 var conn = require('../connect')
 
-var cart_data = {}
+var cart_data={}
 var cart = []
 var amount = 0
 router.post('/', function(req, res){
@@ -88,6 +88,26 @@ router.get('/xoa/:id', function(req, res){
     } else {
         res.redirect('/error')
     }
+})
+
+router.post('/dathang', function(req, res){
+    var dathang = {
+        MaTaiKhoan: req.body.MaTaiKhoan,
+        TongTien: req.body.TongTien,
+        DiaChi: req.body.DiaChi
+    }
+    var sql = 'INSERT INTO dondathang SET ?'
+    conn.query(sql, dathang, function(error, results){
+        if(error){
+            res.redirect('/error')
+        } else {
+            
+            amount = 0
+            delete cart
+
+            res.redirect('/')
+        }
+    })
 })
 
 module.exports = router

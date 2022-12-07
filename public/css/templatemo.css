@@ -216,6 +216,14 @@ body, ul, li, p, a, label, input, div {
   padding-left: 10px;
 }
 
+.input_cart{
+  border: 0;
+  outline: 0;
+  background: none;
+  width: 500px;
+  padding-left: 10px;
+}
+
 /* .searchbar:hover > .search_input{
   padding: 0 10px;
   width: 200px;

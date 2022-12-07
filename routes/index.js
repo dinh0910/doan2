@@ -74,4 +74,24 @@ router.get('/sanpham/:category/:type', function(req, res){
     }) 
 })
 
+router.post('/timkiem', function(req, res){
+    var search = req.body.search
+    conn.query("SELECT * FROM danhmuc ORDER BY MaDanhMuc;\
+                SELECT d.DanhMuc, l.* FROM danhmuc d, loaisanpham l\
+                WHERE d.MaDanhMuc = l.MaDanhMuc\
+                ORDER BY MaDanhMuc;\
+                SELECT s.*, h.HinhAnh FROM sanpham s, hinhanh h WHERE h.MaSanPham = s.MaSanPham AND s.TenSanPham LIKE '%" + search + "%';", function(error, results){
+        if(error){
+            res.redirect('/error')
+        } else {
+            res.render('sanpham', {
+                title: 'San pham',
+                danhmuc: results[0],
+                loaisanpham: results[1],
+                sanpham: results[2]
+            })
+        }
+    })
+})
+
 module.exports = router

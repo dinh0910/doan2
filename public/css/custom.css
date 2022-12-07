@@ -10,7 +10,7 @@
 }
 
 .currSign:after {
-    content: '';
+    content: 'VND';
 }
 
 @media (min-width: 1025px) {

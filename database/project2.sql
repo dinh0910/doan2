@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th12 05, 2022 lúc 05:56 AM
+-- Thời gian đã tạo: Th12 07, 2022 lúc 09:14 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -80,7 +80,7 @@ INSERT INTO `danhmuc` (`MaDanhMuc`, `DanhMuc`, `DanhMucURL`, `HinhAnh`) VALUES
 (1, 'Áo', 'ao', '1669711837233.jpg'),
 (2, 'Quần', 'quan', '1669711844695.jpg'),
 (3, 'Phụ kiện', 'phukien', '1669712215554.jpg'),
-(4, 'Xem thêm', 'xemthem', '1669712278069.jpg');
+(4, 'Giày', 'giay', '1669712278069.jpg');
 
 -- --------------------------------------------------------
 
@@ -91,22 +91,23 @@ INSERT INTO `danhmuc` (`MaDanhMuc`, `DanhMuc`, `DanhMucURL`, `HinhAnh`) VALUES
 CREATE TABLE `dondathang` (
   `MaDatHang` int(11) NOT NULL,
   `MaTaiKhoan` int(11) DEFAULT NULL,
-  `NgayDat` datetime DEFAULT current_timestamp(),
-  `TongTien` int(11) DEFAULT NULL
+  `NgayDat` timestamp NULL DEFAULT current_timestamp(),
+  `TongTien` int(11) DEFAULT NULL,
+  `DiaChi` varchar(255) DEFAULT NULL,
+  `HinhThuc` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Cấu trúc bảng cho bảng `giohang`
+-- Đang đổ dữ liệu cho bảng `dondathang`
 --
 
-CREATE TABLE `giohang` (
-  `MaGioHang` int(11) NOT NULL,
-  `MaSanPham` int(11) DEFAULT NULL,
-  `MaTaiKhoan` int(11) DEFAULT NULL,
-  `DonGia` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `dondathang` (`MaDatHang`, `MaTaiKhoan`, `NgayDat`, `TongTien`, `DiaChi`, `HinhThuc`) VALUES
+(1, 13, '2022-12-07 07:13:29', NULL, NULL, NULL),
+(2, 13, '2022-12-07 07:15:46', 150000, NULL, NULL),
+(3, 13, '2022-12-07 07:17:00', 150000, NULL, NULL),
+(4, 13, '2022-12-07 07:17:21', 150000, NULL, NULL),
+(5, 13, '2022-12-07 07:18:13', 150000, NULL, NULL),
+(6, 13, '2022-12-07 07:25:17', 185000, 'Long Xuyên', NULL);
 
 -- --------------------------------------------------------
 
@@ -238,8 +239,8 @@ INSERT INTO `loaisanpham` (`MaLoaiSanPham`, `MaDanhMuc`, `LoaiSanPham`, `LoaiSan
 (17, 3, 'Nón', 'non'),
 (18, 3, 'Túi', 'tui'),
 (19, 3, 'Balo', 'ba-lo'),
-(20, 4, 'Giới thiệu', 'gioithieu'),
-(21, 4, 'Blogs', 'blogs');
+(20, 4, 'Sneaker', 'sneaker'),
+(21, 4, 'Giày tây', 'giay-tay');
 
 -- --------------------------------------------------------
 
@@ -476,14 +477,6 @@ ALTER TABLE `dondathang`
   ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
 
 --
--- Chỉ mục cho bảng `giohang`
---
-ALTER TABLE `giohang`
-  ADD PRIMARY KEY (`MaGioHang`),
-  ADD KEY `MaSanPham` (`MaSanPham`),
-  ADD KEY `MaTaiKhoan` (`MaTaiKhoan`);
-
---
 -- Chỉ mục cho bảng `hinhanh`
 --
 ALTER TABLE `hinhanh`
@@ -543,16 +536,22 @@ ALTER TABLE `banner`
   MODIFY `MaBanner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT cho bảng `chitietdathang`
+--
+ALTER TABLE `chitietdathang`
+  MODIFY `MaCTDH` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
   MODIFY `MaDanhMuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `giohang`
+-- AUTO_INCREMENT cho bảng `dondathang`
 --
-ALTER TABLE `giohang`
-  MODIFY `MaGioHang` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `dondathang`
+  MODIFY `MaDatHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `hinhanh`
@@ -612,13 +611,6 @@ ALTER TABLE `chitietdathang`
 --
 ALTER TABLE `dondathang`
   ADD CONSTRAINT `dondathang_ibfk_1` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `taikhoan` (`MaTaiKhoan`);
-
---
--- Các ràng buộc cho bảng `giohang`
---
-ALTER TABLE `giohang`
-  ADD CONSTRAINT `giohang_ibfk_1` FOREIGN KEY (`MaSanPham`) REFERENCES `sanpham` (`MaSanPham`),
-  ADD CONSTRAINT `giohang_ibfk_2` FOREIGN KEY (`MaTaiKhoan`) REFERENCES `taikhoan` (`MaTaiKhoan`);
 
 --
 -- Các ràng buộc cho bảng `hinhanh`

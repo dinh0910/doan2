@@ -32,6 +32,7 @@ router.post('/dangnhap', function(req, res){
 						req.session.TenTaiKhoan = tk.TenTaiKhoan
 						req.session.HoTen = tk.HoTen
 						req.session.MaQuyenHan = tk.MaQuyenHan
+						req.session.DiaChi = tk.DiaChi
 						if(req.session.MaQuyenHan == 3)
 							res.redirect('/')
 						else
