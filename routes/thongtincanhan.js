@@ -30,17 +30,21 @@ router.get('/', function (req, res) {
 })
 
 router.post('/capnhat/:id', function(req,res){
-    if(req.session.MaTaiKhoan){
-        var id = req.params.id
-        var sql = 'UPDATE taikhoan SET ? WHERE MaTaiKhoan = ?'
-        conn.query(sql, [id], function(error, results){
-            if(error){
-                res.redirect('/error')
-            } else {
-                res.redirect('/thongtincanhan/')
-            }
-        })
+    var id = req.params.id
+    var taikhoan = {
+        HoTen: req.body.HoTen,
+        DiaChi: req.body.DiaChi,
+        SoDienThoai: req.body.SoDienThoai,
+        Email: req.body.Email
     }
+    var sql = 'UPDATE taikhoan SET ? WHERE MaTaiKhoan = ?'
+    conn.query(sql, [taikhoan, id], function(error, results){
+        if(error){
+            res.redirect('/error')
+        } else {
+            res.redirect('/thongtincanhan')
+        }
+    })
 })
 
 module.exports = router

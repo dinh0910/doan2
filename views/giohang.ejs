@@ -33,7 +33,9 @@
                                                 <h6 class="mb-0 text-muted">Tổng sản phẩm: <%= amount %></h6>
                                             </div>
                                             <% if(amount > 0){ %>
+                                                <% var stt = 0 %> 
                                                 <% cart_data.forEach(function(sp){ %>
+                                                    <% stt++ %> 
                                                     <hr class="my-4">                                          
                                                         <div class="row mb-4 d-flex justify-content-between align-items-center">
                                                             <div class="col-md-2 col-lg-2 col-xl-2">
@@ -41,7 +43,6 @@
                                                                     class="img-fluid rounded-3" alt="">
                                                             </div>
                                                             <div class="col-md-3 col-lg-3 col-xl-3">
-                                                                <h6 class="text-muted">Shirt</h6>
                                                                 <h6 class="text-black mb-0"><%= sp.TenSanPham %></h6>
                                                             </div>
                                                             <!-- <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
@@ -61,9 +62,9 @@
                                                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                                                 <h6 class="mb-0 donGia"><%= sp.DonGia %></h6>
                                                             </div>
-                                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                                                <a href="/giohang/xoa/<%= sp.MaSanPham %>" class="text-muted"><i class="fas fa-times"></i></a>
-                                                            </div>
+                                                            <!-- <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                                <a href="/giohang/xoa/<%= //sp.MaSanPham %>" class="text-muted disabled" aria-disabled="true"><i class="fas fa-times"></i></a>
+                                                            </div> -->
                                                         </div>                                          
                                                     <hr class="my-4">
                                                 <% }) %>
@@ -98,7 +99,6 @@
                                                 <p><%= session.HoTen %></p>
 
                                                 <label class="mt-4 fw-bold" for="DiaChi">Địa chỉ giao hàng</label>
-                                                <input class="input_cart text-dark visually-hidden-focusable" type="text" name="DiaChi" id="DiaChi" value="<%= session.DiaChi %>">
                                                 <p><%= session.DiaChi %></p>
 
                                                 <hr class="my-4">

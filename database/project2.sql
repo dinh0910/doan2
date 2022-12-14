@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: localhost
--- Thời gian đã tạo: Th12 07, 2022 lúc 09:14 AM
+-- Thời gian đã tạo: Th12 14, 2022 lúc 05:32 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -49,19 +49,6 @@ INSERT INTO `banner` (`MaBanner`, `HinhAnh`, `SuDung`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `chitietdathang`
---
-
-CREATE TABLE `chitietdathang` (
-  `MaCTDH` int(11) NOT NULL,
-  `MaDatHang` int(11) DEFAULT NULL,
-  `MaSanPham` int(11) DEFAULT NULL,
-  `DonGia` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `danhmuc`
 --
 
@@ -91,23 +78,18 @@ INSERT INTO `danhmuc` (`MaDanhMuc`, `DanhMuc`, `DanhMucURL`, `HinhAnh`) VALUES
 CREATE TABLE `dondathang` (
   `MaDatHang` int(11) NOT NULL,
   `MaTaiKhoan` int(11) DEFAULT NULL,
-  `NgayDat` timestamp NULL DEFAULT current_timestamp(),
-  `TongTien` int(11) DEFAULT NULL,
-  `DiaChi` varchar(255) DEFAULT NULL,
-  `HinhThuc` varchar(100) DEFAULT NULL
+  `NgayDat` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `TongTien` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `dondathang`
 --
 
-INSERT INTO `dondathang` (`MaDatHang`, `MaTaiKhoan`, `NgayDat`, `TongTien`, `DiaChi`, `HinhThuc`) VALUES
-(1, 13, '2022-12-07 07:13:29', NULL, NULL, NULL),
-(2, 13, '2022-12-07 07:15:46', 150000, NULL, NULL),
-(3, 13, '2022-12-07 07:17:00', 150000, NULL, NULL),
-(4, 13, '2022-12-07 07:17:21', 150000, NULL, NULL),
-(5, 13, '2022-12-07 07:18:13', 150000, NULL, NULL),
-(6, 13, '2022-12-07 07:25:17', 185000, 'Long Xuyên', NULL);
+INSERT INTO `dondathang` (`MaDatHang`, `MaTaiKhoan`, `NgayDat`, `TongTien`) VALUES
+(1, 13, '2022-12-14 03:38:23', 155000),
+(2, 13, '2022-12-14 04:26:15', 75000),
+(3, 13, '2022-12-14 04:27:21', 180000);
 
 -- --------------------------------------------------------
 
@@ -126,13 +108,10 @@ CREATE TABLE `hinhanh` (
 --
 
 INSERT INTO `hinhanh` (`MaHinhAnh`, `MaSanPham`, `HinhAnh`) VALUES
-(1, 9, '1669606509725.jpg'),
 (2, 2, '1669610400767.jpg'),
 (3, 3, '1669610459556.jpg'),
 (4, 4, '1669610472713.jpg'),
-(5, 5, ''),
 (6, 6, '1669610541523.jpg'),
-(7, 8, '1669610555124.jpg'),
 (8, 8, '1669610603826.jpg'),
 (9, 9, '1669610619124.jpg'),
 (10, 10, '1669610635299.jpg'),
@@ -173,7 +152,6 @@ INSERT INTO `hinhanh` (`MaHinhAnh`, `MaSanPham`, `HinhAnh`) VALUES
 (45, 56, '1669611290867.jpg'),
 (46, 57, '1669611308574.jpg'),
 (47, 58, '1669611319427.jpg'),
-(48, 59, ''),
 (49, 60, '1669611352800.jpg'),
 (50, 61, '1669611364792.jpg'),
 (51, 62, '1669611394250.jpg'),
@@ -200,7 +178,8 @@ INSERT INTO `hinhanh` (`MaHinhAnh`, `MaSanPham`, `HinhAnh`) VALUES
 (72, 94, '1669611766624.jpg'),
 (73, 95, '1669611776912.jpg'),
 (74, 96, '1669611789610.jpg'),
-(75, 97, '1669611801825.jpg');
+(75, 97, '1669611801825.jpg'),
+(76, 98, '1670989741291.jpg');
 
 -- --------------------------------------------------------
 
@@ -259,7 +238,6 @@ CREATE TABLE `quyenhan` (
 
 INSERT INTO `quyenhan` (`MaQuyenHan`, `QuyenHan`) VALUES
 (1, 'admin'),
-(2, 'staff'),
 (3, 'user');
 
 -- --------------------------------------------------------
@@ -381,7 +359,8 @@ INSERT INTO `sanpham` (`MaSanPham`, `TenSanPham`, `MaLoaiSanPham`, `MaSize`, `Do
 (94, 'Túi T04', 18, 1, 140000, 1, 0, 1, 3),
 (95, 'Balo B01', 19, 1, 150000, 1, 0, 1, 3),
 (96, 'Balo B02', 19, 1, 75000, 1, 0, 1, 3),
-(97, 'Balo B03', 19, 1, 190000, 1, 0, 1, 3);
+(97, 'Balo B03', 19, 1, 190000, 1, 0, 1, 3),
+(98, 'Áo sơ mi S7', 1, 1, 150000, 1, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -424,7 +403,7 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`MaTaiKhoan`, `TenTaiKhoan`, `MatKhau`, `HoTen`, `DiaChi`, `SoDienThoai`, `Email`, `MaQuyenHan`, `TinhTrang`) VALUES
-(13, 'vinh', '$2b$10$jgcdsB9dFFrOiL1dqcEV5exwJKwHA8utFybqTtiX7QFBZvdivQqBm', 'Pham Lam Nguyen Vinh', 'Long Xuyên', '0849952219', 'dinhpoor0910@gmail.com', 3, 1),
+(13, 'vinh', '$2b$10$jgcdsB9dFFrOiL1dqcEV5exwJKwHA8utFybqTtiX7QFBZvdivQqBm', 'Pham Lam Nguyen Vinh', 'Long Xuyên, An Giang', '0849952219', 'dinhpoor0910@gmail.com', 3, 1),
 (14, 'vinh1', '$2b$10$rVS5f/Ba/oKVOGqYHRohtuappysNch3MPEJ.BtQeMEs0Zp34NOE5q', 'Pham Lam Nguyen Vinh', 'Long Xuyên', '0849952219', 'dinhpoor0910@gmail.com', 3, 1);
 
 -- --------------------------------------------------------
@@ -454,14 +433,6 @@ INSERT INTO `tinhtrang` (`MaTinhTrang`, `TinhTrang`) VALUES
 --
 ALTER TABLE `banner`
   ADD PRIMARY KEY (`MaBanner`);
-
---
--- Chỉ mục cho bảng `chitietdathang`
---
-ALTER TABLE `chitietdathang`
-  ADD PRIMARY KEY (`MaCTDH`),
-  ADD KEY `MaDatHang` (`MaDatHang`),
-  ADD KEY `MaSanPham` (`MaSanPham`);
 
 --
 -- Chỉ mục cho bảng `danhmuc`
@@ -536,12 +507,6 @@ ALTER TABLE `banner`
   MODIFY `MaBanner` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT cho bảng `chitietdathang`
---
-ALTER TABLE `chitietdathang`
-  MODIFY `MaCTDH` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
@@ -551,13 +516,13 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT cho bảng `dondathang`
 --
 ALTER TABLE `dondathang`
-  MODIFY `MaDatHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `MaDatHang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `hinhanh`
 --
 ALTER TABLE `hinhanh`
-  MODIFY `MaHinhAnh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `MaHinhAnh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT cho bảng `loaisanpham`
@@ -575,7 +540,7 @@ ALTER TABLE `quyenhan`
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `MaSanPham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `MaSanPham` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT cho bảng `size`
@@ -598,13 +563,6 @@ ALTER TABLE `tinhtrang`
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
-
---
--- Các ràng buộc cho bảng `chitietdathang`
---
-ALTER TABLE `chitietdathang`
-  ADD CONSTRAINT `chitietdathang_ibfk_1` FOREIGN KEY (`MaDatHang`) REFERENCES `dondathang` (`MaDatHang`),
-  ADD CONSTRAINT `chitietdathang_ibfk_2` FOREIGN KEY (`MaSanPham`) REFERENCES `sanpham` (`MaSanPham`);
 
 --
 -- Các ràng buộc cho bảng `dondathang`

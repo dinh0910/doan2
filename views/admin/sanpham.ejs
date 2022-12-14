@@ -32,11 +32,8 @@
                                             <th>Tên sản phẩm</th>
                                                 <th>Danh mục</th>
                                                     <th>Loại sản phẩm</th>
-                                                        <th>Size</th>
-                                                            <th>Đơn giá</th>
-                                                        <th>Số lượng</th>
-                                                    <th>Đã bán</th>
-                                                <th>Tình trạng</th>
+                                                    <th>Size</th>
+                                                <th>Đơn giá</th>
                                             <th>Sửa</th>
                                         <th>Xóa</th>
                                     </tr>
@@ -51,15 +48,15 @@
                                                         <td><%= sp.LoaiSanPham %></td>
                                                             <td><%= sp.Size %></td>
                                                         <td><%= sp.DonGia %></td>
-                                                    <td><%= sp.SoLuong %></td>
+                                                    <!-- <td><%= //sp.SoLuong %></td>
                                                 <td>
-                                                    <% if(sp.DaBan == 0) { %>
-                                                        <a href="/admin/sanpham/duyet/<%= sp.MaSanPham %>"><i class="fa-regular fa-circle-check"></i></a>
-                                                    <% } else { %>
-                                                        <a href="/admin/sanpham/duyet/<%= sp.MaSanPham %>"><i class="fa-regular fa-circle"></i></a>
-                                                    <% } %>
+                                                    <% //if(sp.DaBan == 0) { %>
+                                                        <a href="/admin/sanpham/duyet/<%= //sp.MaSanPham %>"><i class="fa-regular fa-circle-check"></i></a>
+                                                    <% //} else { %>
+                                                        <a href="/admin/sanpham/duyet/<%= //sp.MaSanPham %>"><i class="fa-regular fa-circle"></i></a>
+                                                    <% //} %>
                                                 </td>
-                                            <td><%= sp.TinhTrang %></td>
+                                            <td><%= //sp.TinhTrang %></td> -->
                                             <td><a href="/admin/sanpham/sua/<%= sp.MaSanPham %>" class="nav-link icon-hover-edit"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                             <td><a href="/admin/sanpham/xoa/<%= sp.MaSanPham %>" class=" nav-link icon-hover-delete"><i class="fa-solid fa-trash"></i></a></td>    
                                         </tr>

@@ -17,7 +17,7 @@ var hinhanhSPRouter = require('./routes/hinhanhsp')
 var tinhtrangRouter = require('./routes/tinhtrang')
 var thongtincanhanRouter = require('./routes/thongtincanhan')
 var giohangRouter = require('./routes/giohang')
-// var dathangRouter = require('./routes/dathang')
+var dondathangRouter = require('./routes/dondathang')
 
 app.set('views', './views')
 app.set('view engine', 'ejs')
@@ -67,7 +67,7 @@ app.use('/admin/hinhanhsp', hinhanhSPRouter)
 app.use('/admin/tinhtrang', tinhtrangRouter)
 app.use('/thongtincanhan', thongtincanhanRouter)
 app.use('/giohang', giohangRouter)
-// app.use('/dathang', dathangRouter)
+app.use('/admin/dondathang', dondathangRouter)
 
 app.listen(3000, function () {
     console.log('Server is running! => http://127.0.0.1:3000 :3')
